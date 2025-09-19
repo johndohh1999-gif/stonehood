@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stonehood</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header>
+  <div class="left-header">
+    <div class="menu-toggle" id="menuToggle">&#9776;</div>
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/logo 1.png" alt="Stonehood Logo" />
+      </a>
+    </div>
+  </div>
+
+  <div class="nav-buttons">
+    <div class="search-wrapper" id="searchWrapper">
+      <a href="#" class="nav-icon" id="searchIcon">
+        <i class="fas fa-search"></i>
+      </a>
+      <input
+        type="text"
+        class="nav-search-input"
+        id="searchInput"
+        placeholder="Search..."
+      />
+    </div>
+    <a href="#" class="nav-icon" id="loginBtn"><i class="fas fa-user"></i></a>
+    <a href="#" class="nav-icon"><i class="fas fa-shopping-cart"></i></a>
+  </div>
+</header>
+
+<nav class="menu" id="fullMenu">
+  <div class="close" id="closeMenu">&times;</div>
+  <h1>Stonehood</h1>
+
+  <div class="menu-top-row">
+    <div class="category-group" data-category="men">
+      <a href="men/men.html" class="menu-category menu-item">Men</a>
+      <div class="submenu" id="submenu-men">
+        <a href="men/men-hoodies.html" class="menu-item">Hoodies</a>
+        <a href="men/men-jackets.html" class="menu-item">Jackets</a>
+        <a href="men/men-shirts.html" class="menu-item">Shirts</a>
+        <a href="men/men-footwear.html" class="menu-item">Footwear</a>
+      </div>
+    </div>
+
+    <div class="category-group" data-category="women">
+      <a href="#" class="menu-category menu-item">Women</a>
+      <div class="submenu" id="submenu-women">
+        <a href="#" class="menu-item">Tops</a>
+        <a href="#" class="menu-item">Dresses</a>
+        <a href="#" class="menu-item">Outerwear</a>
+        <a href="#" class="menu-item">Footwear</a>
+      </div>
+    </div>
+
+    <div class="category-group" data-category="juniors">
+      <a href="#" class="menu-category menu-item">Juniors</a>
+      <div class="submenu" id="submenu-juniors">
+        <a href="#" class="menu-item">T-Shirts</a>
+        <a href="#" class="menu-item">Hoodies</a>
+        <a href="#" class="menu-item">Shorts</a>
+        <a href="#" class="menu-item">Sneakers</a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="menu-divider" />
+
+  <div class="menu-column secondary">
+    <a href="#" class="menu-item">Sale</a>
+    <a href="#" class="menu-item">Clothing</a>
+    <a href="#" class="menu-item">Footwear</a>
+    <a href="#" class="menu-item">Fragrances</a>
+    <a href="#" class="menu-item">Contact Us</a>
+  </div>
+</nav>
+
+<main id="pageContent">
+  <section class="hero-carousel">
+    <div class="carousel-inner">
+      <div class="carousel-slide" style="background-image: url('images/back 1.png');">
+        <div class="carousel-caption">
+          <h1>Elevate Your Streetwear</h1>
+          <p>Premium Hoodies & Sweatshirts</p>
+          <a href="#" class="cta">Shop Now</a>
+        </div>
+      </div>
+
+      <div class="carousel-slide" style="background-image: url('images/back 2.png');">
+        <div class="carousel-caption">
+          <h1>Stay Cozy, Look Cool</h1>
+          <p>Discover Our Latest Collection</p>
+          <a href="#" class="cta">Shop Now</a>
+        </div>
+      </div>
+
+      <div class="carousel-slide" style="background-image: url('images/back 3.png');">
+        <div class="carousel-caption">
+          <h1>Stay Cozy, Look Cool</h1>
+          <p>Discover Our Latest Collection</p>
+          <a href="#" class="cta">Shop Now</a>
+        </div>
+      </div>
+
+      <div class="carousel-slide" style="background-image: url('images/back 4.png');">
+        <div class="carousel-caption">
+          <h1>Stay Cozy, Look Cool</h1>
+          <p>Discover Our Latest Collection</p>
+          <a href="#" class="cta">Shop Now</a>
+        </div>
+      </div>
+
+      <div class="carousel-slide" style="background-image: url('images/back 5.png');">
+        <div class="carousel-caption">
+          <h1>Stay Cozy, Look Cool</h1>
+          <p>Discover Our Latest Collection</p>
+          <a href="#" class="cta">Shop Now</a>
+        </div>
+      </div>
+
+      <div class="carousel-slide" style="background-image: url('images/back 6.png');">
+        <div class="carousel-caption">
+          <h1>Stay Cozy, Look Cool</h1>
+          <p>Discover Our Latest Collection</p>
+          <a href="#" class="cta">Shop Now</a>
+        </div>
+      </div>
+
+      <div class="carousel-slide" style="background-image: url('images/back 7.png');">
+        <div class="carousel-caption">
+          <h1>Stay Cozy, Look Cool</h1>
+          <p>Discover Our Latest Collection</p>
+          <a href="#" class="cta">Shop Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-btn prev">&#10094;</div>
+    <div class="carousel-btn next">&#10095;</div>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2025 Stonehood. All rights reserved.</p>
+</footer>
+
+<div class="login-wrapper" id="loginWrapper">
+  <div class="login-container" id="loginContainer">
+    <span class="close-login" id="closeLogin">&times;</span>
+
+    <div class="login-left">
+      <img src="images/cont.png" alt="Login Image" />
+    </div>
+
+    <div class="login-right">
+      <div class="flip-card" id="flipCard">
+        <div class="card-face card-front">
+          <h1 class="login-title">Welcome back</h1>
+          <p class="login-subtitle">
+            Sign in to access your account and continue your style journey
+          </p>
+
+          <form>
+            <label class="form-label" for="email">Email address</label>
+            <input id="email" type="email" class="form-input" placeholder="your@email.com" required />
+
+            <label class="form-label" for="password">Password</label>
+            <div class="password-container">
+              <input id="password" type="password" placeholder="Enter your password" />
+              <span id="togglePassword" class="password-toggle" role="button" tabindex="0">
+                <!-- Eye icon -->
+                <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+                <svg id="eyeSlashIcon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24" style="display: none;">
+                  <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.14 21.14 0 0 1 5.06-6.34" />
+                  <path d="M1 1l22 22" />
+                </svg>
+              </span>
+            </div>
+
+            <button type="submit" class="login-btn">SIGN IN</button>
+            <a href="#" class="forgot-password">Forgot your password?</a>
+            <div class="divider">or</div>
+            <button type="button" class="signup-btn" id="toSignup">CREATE ACCOUNT</button>
+          </form>
+        </div>
+
+        <!-- BACK: SIGNUP FORM -->
+        <div class="card-face card-back">
+          <h1 class="login-title">Create Account</h1>
+          <p class="login-subtitle">Join us and start your fashion journey</p>
+
+          <form>
+            <label class="form-label" for="signupName">Full Name</label>
+            <input id="signupName" type="text" class="form-input" placeholder="Your Name" required />
+
+            <label class="form-label" for="signupEmail">Email address</label>
+            <input id="signupEmail" type="email" class="form-input" placeholder="Your Email" required />
+
+            <label class="form-label" for="signupPassword">Password</label>
+            <input id="signupPassword" type="password" class="form-input" placeholder="Create Password" required />
+
+            <label class="form-label" for="confirmPassword">Re-enter Password</label>
+            <input id="confirmPassword" type="password" class="form-input" placeholder="Re-enter Password" required />
+
+            <button type="submit" class="login-btn">CREATE ACCOUNT</button>
+            <div class="divider">or</div>
+            <button type="button" class="signup-btn" id="toLogin">Back to Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.0/ScrollTrigger.min.js"></script>
+
+</body>
+</html>

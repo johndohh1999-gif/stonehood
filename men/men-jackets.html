@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Jackets Collection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2c2c2c;
+        }
+
+        .filter-sort {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .filter-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 1px solid #ddd;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .product-count {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Filter Modal Styles */
+        .filter-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .filter-modal.active {
+            display: flex;
+        }
+
+        .filter-content {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .filter-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .filter-section {
+            margin-bottom: 25px;
+        }
+
+        .filter-section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .sort-options, .price-options, .size-options-filter {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .filter-option:hover {
+            background-color: #f5f5f5;
+        }
+
+        .filter-option input[type="radio"] {
+            margin: 0;
+        }
+
+        .price-range {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .price-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .apply-filters {
+            width: 100%;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .apply-filters:hover {
+            background: #555;
+        }
+
+        .clear-filters {
+            width: 100%;
+            background: white;
+            color: #333;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .clear-filters:hover {
+            background: #f5f5f5;
+        }
+
+        .category-filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: #333;
+            color: white;
+            border-color: #333;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(2,02,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #e74c3c;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .new-badge {
+            background: #27ae60;
+        }
+
+        .limited-badge {
+            background: #f39c12;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 350px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .jacket-display {
+            width: 240px;
+            height: 300px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+            transition: transform 0.3s ease;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-card:hover .jacket-display {
+            transform: scale(1.03);
+        }
+
+        .material-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c2c2c;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .product-description {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .current-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #e74c3c;
+        }
+
+        .original-price {
+            font-size: 14px;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .size-selection {
+            margin-bottom: 15px;
+        }
+
+        .size-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 6px;
+        }
+
+        .size-btn {
+            width: 35px;
+            height: 35px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .size-btn:hover, .size-btn.selected {
+            border-color: #333;
+            background: #333;
+            color: white;
+        }
+
+        .color-selection {
+            margin-bottom: 15px;
+        }
+
+        .color-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .color-dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+        }
+
+        .color-dot:hover, .color-dot.active {
+            border-color: #333;
+        }
+
+        .more-colors {
+            font-size: 12px;
+            color: #666;
+            margin-left: 5px;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .add-to-cart:hover {
+            background: #555;
+        }
+
+        .quick-buy {
+            width: 100%;
+            background: white;
+            color: #333;
+            border: 1px solid #333;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .quick-buy:hover {
+            background: #333;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+
+            .category-filters {
+                justify-content: center;
+            }
+
+            .filter-content {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Men's Jackets Collection</h1>
+            <div class="filter-sort">
+                <button class="filter-btn" onclick="toggleFilter()">
+                    <span>FILTER & SORT</span>
+                    <span>⚙️</span>
+                </button>
+                <span class="product-count" id="productCount">16 PRODUCTS</span>
+            </div>
+        </div>
+
+        <div class="category-filters">
+            <button class="category-btn active" onclick="filterByCategory('all', this)">All Jackets</button>
+            <button class="category-btn" onclick="filterByCategory('leather', this)">Leather</button>
+            <button class="category-btn" onclick="filterByCategory('denim', this)">Denim</button>
+            <button class="category-btn" onclick="filterByCategory('fur', this)">Fur</button>
+            <button class="category-btn" onclick="filterByCategory('raxine', this)">Raxine</button>
+        </div>
+
+        <!-- Filter Modal -->
+        <div class="filter-modal" id="filterModal">
+            <div class="filter-content">
+                <div class="filter-header">
+                    <h2 class="filter-title">Filter & Sort</h2>
+                    <button class="close-btn" onclick="closeFilter()">&times;</button>
+                </div>
+
+                <div class="filter-section">
+                    <h3 class="filter-section-title">Sort By</h3>
+                    <div class="sort-options">
+                        <label class="filter-option">
+                            <input type="radio" name="sort" value="featured" checked>
+                            Featured
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="sort" value="price-low">
+                            Price: Low to High
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="sort" value="price-high">
+                            Price: High to Low
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="sort" value="name-asc">
+                            Name: A to Z
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="sort" value="name-desc">
+                            Name: Z to A
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3 class="filter-section-title">Price Range</h3>
+                    <div class="price-options">
+                        <label class="filter-option">
+                            <input type="radio" name="price" value="all" checked>
+                            All Prices
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="price" value="0-25000">
+                            Under Rs.25,000
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="price" value="25000-50000">
+                            Rs.25,000 - Rs.50,000
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="price" value="50000+">
+                            Above Rs.50,000
+                        </label>
+                    </div>
+                    <div class="price-range">
+                        <input type="number" class="price-input" id="minPrice" placeholder="Min Price" min="0">
+                        <span>to</span>
+                        <input type="number" class="price-input" id="maxPrice" placeholder="Max Price" min="0">
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3 class="filter-section-title">Available Sizes</h3>
+                    <div class="size-options-filter">
+                        <label class="filter-option">
+                            <input type="checkbox" name="sizes" value="S">
+                            Small (S)
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="sizes" value="M">
+                            Medium (M)
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="sizes" value="L">
+                            Large (L)
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="sizes" value="XL">
+                            Extra Large (XL)
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="sizes" value="XXL">
+                            XXL
+                        </label>
+                    </div>
+                </div>
+
+                <button class="apply-filters" onclick="applyFilters()">Apply Filters</button>
+                <button class="clear-filters" onclick="clearAllFilters()">Clear All Filters</button>
+            </div>
+        </div>
+
+        <div class="product-grid" id="productGrid">
+            <!-- Product 1 - Leather Jacket -->
+            <div class="product-card" data-category="leather" data-price="45000" data-name="The Classic Leather">
+                <div class="discount-badge">40% OFF</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #2c2c2c, #1a1a1a);">
+                    <div class="jacket-display" style="background: linear-gradient(135deg, #8b4513, #654321);">
+                        <div class="material-tag">LEATHER</div>
+                        <img id="leather-classic-image" src="../images/products/darkblackbomb.png" alt="Classic Leather Jacket" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">The Classic Leather</h3>
+                    <p class="product-description">Premium genuine leather with quilted lining and classic biker styling</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.45,000.00</span>
+                        <span class="original-price">Rs.75,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options" data-sizes="S,M,L,XL,XXL">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn selected">M</button>
+                            <button class="size-btn">L</button>
+                            <button class="size-btn">XL</button>
+                            <button class="size-btn">XXL</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #8b4513;" onclick="changeJacketImage('leather-classic-image', '../images/products/brownjacket.png', this)"></div>
+                            <div class="color-dot" style="background-color: #2c2c2c;" onclick="changeJacketImage('leather-classic-image', '../images/products/blackjacket.png', this)"></div>
+                            <div class="color-dot" style="background-color: #654321;" onclick="changeJacketImage('leather-classic-image', '../images/products/darkbrownjacket.png', this)"></div>
+                            <span class="more-colors">+2 →</span>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(1)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(1)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 - Denim Jacket -->
+            <div class="product-card" data-category="denim" data-price="18000" data-name="The Vintage Denim">
+                <div class="discount-badge new-badge">NEW</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #4682b4, #5f9ea0);">
+                    <div class="jacket-display" style="background: linear-gradient(135deg, #4169e1, #1e90ff);">
+                        <div class="material-tag">DENIM</div>
+                        <img id="denim-vintage-image" src="../images/products/bluevintage.png" alt="Vintage Denim Jacket" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">The Vintage Denim</h3>
+                    <p class="product-description">Classic denim with vintage wash and comfortable relaxed fit</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.18,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options" data-sizes="S,M,L,XL">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn">M</button>
+                            <button class="size-btn selected">L</button>
+                            <button class="size-btn">XL</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #4169e1;" onclick="changeJacketImage('denim-vintage-image', '../images/products/bluedistress.png', this)"></div>
+                            <div class="color-dot" style="background-color: #2f4f4f;" onclick="changeJacketImage('denim-vintage-image', '../images/products/darkvintage.png', this)"></div>
+                            <div class="color-dot" style="background-color: #87ceeb;" onclick="changeJacketImage('denim-vintage-image', '../images/products/lightvintage.png', this)"></div>
+                            <span class="more-colors">→</span>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(2)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(2)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 - Fur Jacket -->
+            <div class="product-card" data-category="fur" data-price="65000" data-name="The Luxury Fur">
+                <div class="discount-badge limited-badge">LIMITED</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #f5f5dc, #ddd);">
+                    <div class="jacket-display" style="background: linear-gradient(135deg, #8b7d6b, #a0522d);">
+                        <div class="material-tag">FUR</div>
+                        <img id="fur-luxury-image" src="../images/products/furbrown.jpg" alt="Luxury Fur Jacket" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">The Luxury Fur</h3>
+                    <p class="product-description">Premium faux fur with silk lining and sophisticated winter styling</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.65,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options" data-sizes="M,L,XL">
+                            <button class="size-btn">M</button>
+                            <button class="size-btn selected">L</button>
+                            <button class="size-btn">XL</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #8b7d6b;" onclick="changeJacketImage('fur-luxury-image', '../images/products/furbrown.jpg', this)"></div>
+                            <div class="color-dot" style="background-color: #2c2c2c;" onclick="changeJacketImage('fur-luxury-image', '../images/products/furblack.jpg', this)"></div>
+                            <div class="color-dot" style="background-color: #f5f5dc;" onclick="changeJacketImage('fur-luxury-image', '../images/products/furcream.jpg', this)"></div>
+                            <span class="more-colors">→</span>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(3)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(3)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 - Raxine Jacket -->
+            <div class="product-card" data-category="raxine" data-price="21000" data-name="The Modern Raxine">
+                <div class="discount-badge">30% OFF</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #2c2c2c, #1a1a1a);">
+                    <div class="jacket-display" style="background: linear-gradient(135deg, #36454f, #2f4f4f);">
+                        <div class="material-tag">RAXINE</div>
+                        <img id="raxine-modern-image" src="../images/products/raxinegrey.jpg" alt="Modern Raxine Jacket" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">The Modern Raxine</h3>
+                    <p class="product-description">Water-resistant raxine material with modern cut and urban styling</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.21,000.00</span>
+                        <span class="original-price">Rs.30,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options" data-sizes="S,M,L,XL,XXL">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn">M</button>
+                            <button class="size-btn selected">L</button>
+                            <button class="size-btn">XL</button>
+                            <button class="size-btn">XXL</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #36454f;" onclick="changeJacketImage('raxine-modern-image', '../images/products/raxinegrey.jpg', this)"></div>
+                            <div class="color-dot" style="background-color: #2c2c2c;" onclick="changeJacketImage('raxine-modern-image', '../images/products/raxineblack.jpg', this)"></div>
+                            <div class="color-dot" style="background-color: #8b4513;" onclick="changeJacketImage('raxine-modern-image', '../images/products/raxinebrown.jpg', this)"></div>
+                            <span class="more-colors">+1 →</span>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(4)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(4)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5 - Premium Leather Bomber -->
+            <div class="product-card" data-category="leather" data-price="37500" data-name="The Bomber Leather">
+                <div class="discount-badge">25% OFF</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #2c2c2c, #1a1a1a);">
+                    <div class="jacket-display" style="background: linear-gradient(135deg, #2c2c2c, #1a1a1a);">
+                        <div class="material-tag">LEATHER</div>
+                        <img id="leather-bomber-image" src="../images/products/bomberblack.png" alt="Leather Bomber Jacket" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">The Bomber Leather</h3>
+                    <p class="product-description">Sleek bomber style leather jacket with ribbed cuffs and waistband</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.37,500.00</span>
+                        <span class="original-price">Rs.50,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options" data-sizes="S,M,L,XL">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn selected">M</button>
+                            <button class="size-btn">L</button>
+                            <button class="size-btn">XL</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #2c2c2c;" onclick="changeJacketImage('leather-bomber-image', '../images/products/bomberblack.png', this)"></div>
+                            <div class="color-dot" style="background-color: #8b4513;" onclick="changeJacketImage('leather-bomber-image', '../images/products/bomberbrown.png', this)"></div>
+                            <span class="more-colors">→</span>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(5)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(5)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6 - Distressed Denim -->
+            <div class="product-card" data-category="denim" data-price="22000" data-name="The Distressed Denim">
+                <div class="product-image" style="background: linear-gradient(135deg, #4682b4, #5f9ea0);">
+                    <div class="jacket-display" style="background: linear-gradient(135deg, #6495ed, #4169e1);">
+                        <div class="material-tag">DENIM</div>
+                        <img id="denim-distressed-image" src="../images/products/distressblue.jpg" alt="Distressed Denim Jacket" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">The Distressed Denim</h3>
+                    <p class="product-description">Trendy distressed denim with authentic wear patterns and modern fit</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.22,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options" data-sizes="S,M,L,XL">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn">M</button>
+                            <button class="size-btn selected">L</button>
+                            <button class="size-btn">XL</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #6495ed;" onclick="changeJacketImage('denim-distressed-image', '../images/products/distressblue.jpg', this)"></div>
+                            <div class="color-dot" style="background-color: #2f4f4f;" onclick="changeJacketImage('denim-distressed-image', '../images/products/distressblack.jpg', this)"></div>
+                            <span class="more-colors">+1 →</span>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(6)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(6)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle filter modal
+        function toggleFilter() {
+            const modal = document.getElementById('filterModal');
+            modal.classList.add('active');
+        }
+
+        // Close filter modal
+        function closeFilter() {
+            const modal = document.getElementById('filterModal');
+            modal.classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('filterModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeFilter();
+            }
+        });
+
+        // Category filter functionality
+        function filterByCategory(category, clickedBtn) {
+            const cards = document.querySelectorAll('.product-card');
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            
+            // Update active category button
+            categoryBtns.forEach(btn => btn.classList.remove('active'));
+            clickedBtn.classList.add('active');
+            
+            // Filter products
+            let visibleCount = 0;
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.5s ease';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update product count
+            updateProductCount(visibleCount);
+        }
+
+        // Apply filters function
+        function applyFilters() {
+            const cards = document.querySelectorAll('.product-card');
+            const sortBy = document.querySelector('input[name="sort"]:checked').value;
+            const priceRange = document.querySelector('input[name="price"]:checked').value;
+            const minPrice = document.getElementById('minPrice').value;
+            const maxPrice = document.getElementById('maxPrice').value;
+            const selectedSizes = Array.from(document.querySelectorAll('input[name="sizes"]:checked')).map(cb => cb.value);
+
+            let filteredCards = Array.from(cards);
+
+            // Filter by price range
+            filteredCards = filteredCards.filter(card => {
+                const price = parseInt(card.dataset.price);
+                
+                // Custom price range
+                if (minPrice && price < parseInt(minPrice)) return false;
+                if (maxPrice && price > parseInt(maxPrice)) return false;
+                
+                // Predefined price ranges
+                if (priceRange !== 'all') {
+                    switch (priceRange) {
+                        case '0-25000':
+                            return price < 25000;
+                        case '25000-50000':
+                            return price >= 25000 && price <= 50000;
+                        case '50000+':
+                            return price > 50000;
+                    }
+                }
+                return true;
+            });
+
+            // Filter by sizes
+            if (selectedSizes.length > 0) {
+                filteredCards = filteredCards.filter(card => {
+                    const availableSizes = card.querySelector('.size-options').dataset.sizes.split(',');
+                    return selectedSizes.some(size => availableSizes.includes(size));
+                });
+            }
+
+            // Hide all cards first
+            cards.forEach(card => card.style.display = 'none');
+
+            // Show filtered cards
+            filteredCards.forEach(card => card.style.display = 'block');
+
+            // Sort filtered cards
+            sortProducts(filteredCards, sortBy);
+
+            // Update product count
+            updateProductCount(filteredCards.length);
+
+            // Close modal
+            closeFilter();
+        }
+
+        // Sort products function
+        function sortProducts(cards, sortBy) {
+            const productGrid = document.getElementById('productGrid');
+            
+            cards.sort((a, b) => {
+                switch (sortBy) {
+                    case 'price-low':
+                        return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+                    case 'price-high':
+                        return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+                    case 'name-asc':
+                        return a.dataset.name.localeCompare(b.dataset.name);
+                    case 'name-desc':
+                        return b.dataset.name.localeCompare(a.dataset.name);
+                    default: // featured
+                        return 0;
+                }
+            });
+
+            // Reorder in DOM
+            cards.forEach(card => productGrid.appendChild(card));
+        }
+
+        // Clear all filters
+        function clearAllFilters() {
+            // Reset sort to featured
+            document.querySelector('input[name="sort"][value="featured"]').checked = true;
+            
+            // Reset price range
+            document.querySelector('input[name="price"][value="all"]').checked = true;
+            
+            // Clear custom price inputs
+            document.getElementById('minPrice').value = '';
+            document.getElementById('maxPrice').value = '';
+            
+            // Uncheck all sizes
+            document.querySelectorAll('input[name="sizes"]').forEach(cb => cb.checked = false);
+            
+            // Reset category filter
+            document.querySelector('.category-btn.active').classList.remove('active');
+            document.querySelector('.category-btn[onclick*="all"]').classList.add('active');
+            
+            // Show all products
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => card.style.display = 'block');
+            
+            updateProductCount(cards.length);
+            closeFilter();
+        }
+
+        // Update product count
+        function updateProductCount(count) {
+            document.getElementById('productCount').textContent = `${count} PRODUCTS`;
+        }
+
+        // Color change functionality - changes jacket image when color dot is clicked
+        function changeJacketImage(imageId, imageSrc, clickedDot) {
+            // Change the image
+            document.getElementById(imageId).src = imageSrc;
+            
+            // Update active color dot
+            const colorOptions = clickedDot.parentElement;
+            const allDots = colorOptions.querySelectorAll('.color-dot');
+            allDots.forEach(dot => dot.classList.remove('active'));
+            clickedDot.classList.add('active');
+        }
+
+        // Size selection functionality
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const siblings = this.parentElement.querySelectorAll('.size-btn');
+                siblings.forEach(sibling => sibling.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        // Add to cart functionality
+        function addToCart(productId) {
+            const card = event.target.closest('.product-card');
+            const selectedSize = card.querySelector('.size-btn.selected')?.textContent || 'M';
+            const productName = card.querySelector('.product-name').textContent;
+            
+            // Visual feedback
+            event.target.style.background = '#27ae60';
+            event.target.textContent = 'Added to Cart!';
+            
+            setTimeout(() => {
+                event.target.style.background = '#333';
+                event.target.textContent = 'Add to Cart';
+            }, 2000);
+            
+            console.log(`Added ${productName} (Size: ${selectedSize}) to cart`);
+        }
+
+        // Quick buy functionality
+        function quickBuy(productId) {
+            const card = event.target.closest('.product-card');
+            const productName = card.querySelector('.product-name').textContent;
+            const price = card.querySelector('.current-price').textContent;
+            const selectedSize = card.querySelector('.size-btn.selected')?.textContent || 'M';
+            
+            alert(`Quick Buy: ${productName}\nSize: ${selectedSize}\nPrice: ${price}\n\nRedirecting to checkout...`);
+        }
+
+        // Loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

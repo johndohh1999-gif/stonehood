@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Hoodies & Sweatshirts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2c2c2c;
+        }
+
+        .filter-sort {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .filter-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 1px solid #ddd;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .product-count {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #e74c3c;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .new-badge {
+            background: #27ae60;
+        }
+
+        .limited-badge {
+            background: #f39c12;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 320px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hoodie-display {
+            width: 200px;
+            height: 240px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover .hoodie-display {
+            transform: scale(1.05);
+        }
+
+        .hoodie-front {
+            width: 160px;
+            height: 180px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c2c2c;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .product-description {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .current-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #e74c3c;
+        }
+
+        .original-price {
+            font-size: 14px;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .size-selection {
+            margin-bottom: 15px;
+        }
+
+        .size-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 6px;
+        }
+
+        .size-btn {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .size-btn:hover, .size-btn.selected {
+            border-color: #333;
+            background: #333;
+            color: white;
+        }
+
+        .color-selection {
+            margin-bottom: 15px;
+        }
+
+        .color-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .color-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+        }
+
+        .color-dot:hover, .color-dot.active {
+            border-color: #333;
+        }
+
+        .more-colors {
+            font-size: 12px;
+            color: #666;
+            margin-left: 5px;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .add-to-cart:hover {
+            background: #555;
+        }
+
+        .quick-buy {
+            width: 100%;
+            background: white;
+            color: #333;
+            border: 1px solid #333;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .quick-buy:hover {
+            background: #333;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Men's Hoodies & Sweatshirts</h1>
+            <div class="filter-sort">
+                <button class="filter-btn" onclick="toggleFilter()">
+                    <span>FILTER & SORT</span>
+                    <span>⚙️</span>
+                </button>
+                <span class="product-count">18 PRODUCTS</span>
+            </div>
+        </div>
+
+        <div class="product-grid">
+ <div class="product-card">
+  <div class="discount-badge">40% OFF</div>
+  
+  <div class="product-image" style="background: linear-gradient(135deg, #f5f5f5, #e8e8e8);">
+    <img class="product-main-image" src="../images/products/blackhoodie.png" alt="Essential Black Hoodie" style="width: 100%; height: auto;" />
+  </div>
+  
+  <div class="product-info">
+    <h3 class="product-name">The Essential Hoodie</h3>
+    <p class="product-description">Premium cotton fleece with kangaroo pocket and adjustable drawstring</p>
+    <div class="product-price">
+      <span class="current-price">Rs.18,000.00</span>
+      <span class="original-price">Rs.30,000.00</span>
+    </div>
+
+    <div class="size-selection">
+      <div class="size-label">Size</div>
+      <div class="size-options">
+        <button class="size-btn">S</button>
+        <button class="size-btn selected">M</button>
+        <button class="size-btn">L</button>
+        <button class="size-btn">XL</button>
+        <button class="size-btn">XXL</button>
+      </div>
+    </div>
+
+ <div class="color-selection">
+    <div class="color-label">Colors</div>
+    <div class="color-options">
+        <div class="color-dot active" data-image="../images/products/blackhoodie.png" style="background-color: #2c2c2c;"></div>
+        <div class="color-dot" data-image="../images/products/brownhoodie.png" style="background-color: #8b7355;"></div>
+        <div class="color-dot" data-image="../images/products/greyhoodie.png" style="background-color: #4a4a4a;"></div>
+        <div class="color-dot" data-image="../images/products/steelhoodie.png" style="background-color: #718096;"></div>
+    </div>
+ </div>
+
+    <div class="action-buttons">
+      <button class="add-to-cart" onclick="addToCart(1)">Add to Cart</button>
+      <button class="quick-buy" onclick="quickBuy(1)">Quick Buy</button>
+    </div>
+  </div>
+</div>
+
+            <div class="product-card">
+                <div class="discount-badge new-badge">NEW</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #e8f4fd, #d6ecfa);">
+                    <img class="product-main-image" src="../images/products/oceanblue.png" alt="Product Image" style="width: 100%; height: auto;" />
+                    <div class="hoodie-display">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">The Ocean Wave Hoodie</h3>
+                    <p class="product-description">Eco-friendly organic cotton with wave pattern embroidery</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.25,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn">M</button>
+                            <button class="size-btn selected">L</button>
+                            <button class="size-btn">XL</button>
+                        </div>
+                    </div>
+                <div class="color-selection">
+    <div class="color-label">Colors</div>
+    <div class="color-options">
+        <div class="color-dot active" data-image="../images/products/oceanblue.png" style="background-color: #3498db;"></div>
+        <div class="color-dot" data-image="../images/products/aquagreen.png" style="background-color: #1abc9c;"></div>
+        <div class="color-dot" data-image="../images/products/emerald.png" style="background-color: #16a085;"></div>
+        <span class="more-colors">→</span>
+    </div>
+</div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(2)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(2)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="discount-badge">30% OFF</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #f0f4f0, #e8ece8);">
+                    <img class="product-main-image" src="../images/products/forestgreen.png" alt="Product Image" style="width: 100%; height:100%;" />
+                    <div class="hoodie-display">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">The Forest Explorer Hoodie</h3>
+                    <p class="product-description">Durable cotton blend with moisture-wicking technology</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.21,000.00</span>
+                        <span class="original-price">Rs.30,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn">M</button>
+                            <button class="size-btn selected">L</button>
+                            <button class="size-btn">XL</button>
+                            <button class="size-btn">XXL</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" data-image="../images/products/forestgreen.png" style="background-color: #27ae60;"></div>
+                            <div class="color-dot" data-image="../images/products/lightgreen.png" style="background-color: #16a085;"></div>
+                            <div class="color-dot" data-image="../images/products/emeraldgreen.png" style="background-color: #2ecc71;"></div>
+                            <div class="color-dot" data-image="../images/products/mossgreen.png" style="background-color: #6b7c5a;"></div>
+                            <span class="more-colors">→</span>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(3)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(3)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="discount-badge limited-badge">LIMITED</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #f5f0f0, #ece8e8);">
+                    <img class="product-main-image" src="../images/products/deepred.png" alt="Product Image" style="width: 100%; height:100%;" />
+                    <div class="hoodie-display">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">The Burgundy Collection</h3>
+                    <p class="product-description">Limited edition premium fleece with embossed logo</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.32,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options">
+                            <button class="size-btn">M</button>
+                            <button class="size-btn selected">L</button>
+                            <button class="size-btn">XL</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" data-image="../images/products/deepred.png" style="background-color: #8b2635;"></div>
+                            <div class="color-dot" data-image="../images/products/litered.png" style="background-color: #c0392b;"></div>
+                            <span class="more-colors">→</span>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(4)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(4)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5 - Heather Grey Hoodie -->
+            <div class="product-card">
+                <div class="discount-badge">25% OFF</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #f8f8f8, #f0f0f0);">
+                    <div class="hoodie-display">
+                      <img class="product-main-image" src="../images/products/heathergrey.png" alt="Product Image" style="width: 100%; height:100%;" />  
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">The Classic Comfort</h3>
+                    <p class="product-description">Soft heather cotton blend with relaxed fit design</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.22,500.00</span>
+                        <span class="original-price">Rs.30,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn selected">M</button>
+                            <button class="size-btn">L</button>
+                            <button class="size-btn">XL</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" data-image="../images/products/heathergrey.png" style="background-color: #95a5a6;"></div>
+                            <div class="color-dot" data-image="../images/products/darkgrey.png" style="background-color: #7f8c8d;"></div>
+                            <div class="color-dot" data-image="../images/products/lightgrey.png" style="background-color: #bdc3c7;"></div>
+                            <span class="more-colors">+2 →</span>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(5)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(5)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6 - Navy Blue Hoodie -->
+            <div class="product-card">
+                <div class="product-image" style="background: linear-gradient(135deg, #f0f2f5, #e8eaed);">
+                    <div class="hoodie-display">
+                        <div class="hoodie-front" style="background: #2c3e50;">
+                            NAVY BLUE
+                        </div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">The Navy Essential</h3>
+                    <p class="product-description">Versatile navy blue hoodie with modern cut and premium fabric</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.24,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn">M</button>
+                            <button class="size-btn selected">L</button>
+                            <button class="size-btn">XL</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #2c3e50;"></div>
+                            <div class="color-dot" style="background-color: #34495e;"></div>
+                            <div class="color-dot" style="background-color: #4a5568;"></div>
+                            <span class="more-colors">→</span>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(6)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(6)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFilter() {
+            alert('Filter & Sort options would open here');
+        }
+
+        // Size selection functionality
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const siblings = this.parentElement.querySelectorAll('.size-btn');
+                siblings.forEach(sibling => sibling.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        // Color selection functionality
+// Color selection functionality
+document.querySelectorAll('.color-dot').forEach(dot => {
+    dot.addEventListener('click', function() {
+        // Remove 'active' class from all color dots
+        const siblings = this.parentElement.querySelectorAll('.color-dot');
+        siblings.forEach(sibling => sibling.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Get the new image URL from the data-image attribute
+        const newImageSrc = this.getAttribute('data-image');
+        
+        // Get the product card's main image
+        const productCard = this.closest('.product-card');  // Get the closest .product-card element
+        const productImage = productCard.querySelector('.product-main-image');  // Get the main image in the card
+        
+        // Update the main product image if it exists
+        if (productImage) {
+            productImage.src = newImageSrc;
+        }
+    });
+});
+
+        // Add to cart functionality
+        function addToCart(productId) {
+            const card = event.target.closest('.product-card');
+            const selectedSize = card.querySelector('.size-btn.selected')?.textContent || 'M';
+            const productName = card.querySelector('.product-name').textContent;
+            
+            // Visual feedback
+            event.target.style.background = '#27ae60';
+            event.target.textContent = 'Added to Cart!';
+            
+            setTimeout(() => {
+                event.target.style.background = '#333';
+                event.target.textContent = 'Add to Cart';
+            }, 2000);
+            
+            console.log(`Added ${productName} (Size: ${selectedSize}) to cart`);
+        }
+
+        // Quick buy functionality
+        function quickBuy(productId) {
+            const card = event.target.closest('.product-card');
+            const productName = card.querySelector('.product-name').textContent;
+            const price = card.querySelector('.current-price').textContent;
+            const selectedSize = card.querySelector('.size-btn.selected')?.textContent || 'M';
+            
+            alert(`Quick Buy: ${productName}\nSize: ${selectedSize}\nPrice: ${price}\n\nRedirecting to checkout...`);
+        }
+
+        // Loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

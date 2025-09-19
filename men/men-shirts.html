@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Shirts Collection</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui, sans-serif; background: #f8f8f8; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid #e0e0e0; padding-bottom: 15px; }
+        .title { font-size: 28px; font-weight: 600; }
+        .filter-sort { display: flex; align-items: center; gap: 20px; }
+        .filter-btn { background: white; border: 1px solid #ddd; padding: 10px 16px; border-radius: 6px; cursor: pointer; font-size: 14px; }
+        .filter-btn:hover { background: #f5f5f5; }
+        .product-count { font-size: 14px; color: #666; font-weight: 500; }
+        .filter-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: none; align-items: center; justify-content: center; }
+        .filter-modal.active { display: flex; }
+        .filter-content { background: white; border-radius: 12px; padding: 30px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; }
+        .filter-header { display: flex; justify-content: space-between; margin-bottom: 25px; border-bottom: 1px solid #e0e0e0; padding-bottom: 15px; }
+        .close-btn { background: none; border: none; font-size: 24px; cursor: pointer; color: #666; }
+        .filter-section { margin-bottom: 20px; }
+        .filter-section-title { font-size: 16px; font-weight: 600; margin-bottom: 15px; }
+        .filter-option { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 6px; cursor: pointer; margin-bottom: 5px; }
+        .filter-option:hover { background: #f5f5f5; }
+        .price-range { display: flex; gap: 15px; margin-top: 10px; }
+        .price-input { flex: 1; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; }
+        .apply-filters, .clear-filters { width: 100%; padding: 12px; border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 8px; }
+        .apply-filters { background: #333; color: white; border: none; }
+        .clear-filters { background: white; color: #333; border: 1px solid #ddd; }
+        .category-filters { display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+        .category-btn { background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+        .category-btn:hover, .category-btn.active { background: #333; color: white; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .product-card { background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.2s; position: relative; }
+        .product-card:hover { transform: translateY(-4px); }
+        .discount-badge { position: absolute; top: 15px; left: 15px; background: #e74c3c; color: white; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: 600; z-index: 2; }
+        .new-badge { background: #27ae60; }
+        .bestseller-badge { background: #f39c12; }
+        .product-image { width: 100%; height: 350px; display: flex; align-items: center; justify-content: center; position: relative; border-radius: 8px 8px 0 0; overflow: hidden; background: #f8f9fa; }
+        .product-image img { width: 100%; height: 100%; object-fit: cover; }
+        .material-tag { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; border-radius: 12px; font-size: 10px; text-transform: uppercase; }
+        .product-info { padding: 20px; }
+        .product-name { font-size: 16px; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; }
+        .product-description { font-size: 13px; color: #666; margin-bottom: 12px; }
+        .product-price { display: flex; gap: 8px; margin-bottom: 15px; }
+        .current-price { font-size: 18px; font-weight: 700; color: #e74c3c; }
+        .original-price { font-size: 14px; color: #999; text-decoration: line-through; }
+        .size-selection { margin-bottom: 15px; }
+        .size-label { font-size: 12px; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; }
+        .size-options { display: flex; gap: 6px; }
+        .size-btn { width: 35px; height: 35px; border: 1px solid #ddd; background: white; border-radius: 4px; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .size-btn:hover, .size-btn.selected { border-color: #333; background: #333; color: white; }
+        .color-selection { margin-bottom: 15px; }
+        .color-label { font-size: 12px; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; }
+        .color-options { display: flex; gap: 8px; align-items: center; }
+        .color-dot { width: 18px; height: 18px; border-radius: 50%; border: 2px solid #ddd; cursor: pointer; transition: all 0.2s ease; }
+        .color-dot:hover { transform: scale(1.1); }
+        .color-dot.active { border-color: #333; box-shadow: 0 0 0 2px rgba(51,51,51,0.2); }
+        .more-colors { font-size: 12px; color: #666; margin-left: 5px; }
+        .action-buttons { display: flex; flex-direction: column; gap: 8px; }
+        .add-to-cart, .quick-buy { width: 100%; padding: 12px; border-radius: 6px; font-weight: 600; cursor: pointer; text-transform: uppercase; transition: all 0.2s ease; }
+        .add-to-cart { background: #333; color: white; border: none; }
+        .quick-buy { background: white; color: #333; border: 1px solid #333; }
+        .add-to-cart:hover { background: #555; }
+        .quick-buy:hover { background: #333; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Men's Shirts Collection</h1>
+            <div class="filter-sort">
+                <button class="filter-btn" onclick="toggleFilter()">FILTER & SORT ⚙️</button>
+                <span class="product-count" id="productCount">6 PRODUCTS</span>
+            </div>
+        </div>
+
+        <div class="category-filters">
+            <button class="category-btn active" onclick="filterByCategory('all', this)">All Shirts</button>
+            <button class="category-btn" onclick="filterByCategory('formal', this)">Formal</button>
+            <button class="category-btn" onclick="filterByCategory('casual', this)">Casual</button>
+            <button class="category-btn" onclick="filterByCategory('polo', this)">Polo</button>
+            <button class="category-btn" onclick="filterByCategory('henley', this)">Henley</button>
+        </div>
+
+        <div class="filter-modal" id="filterModal">
+            <div class="filter-content">
+                <div class="filter-header">
+                    <h2>Filter & Sort</h2>
+                    <button class="close-btn" onclick="closeFilter()">&times;</button>
+                </div>
+                <div class="filter-section">
+                    <h3 class="filter-section-title">Sort By</h3>
+                    <label class="filter-option"><input type="radio" name="sort" value="featured" checked> Featured</label>
+                    <label class="filter-option"><input type="radio" name="sort" value="price-low"> Price: Low to High</label>
+                    <label class="filter-option"><input type="radio" name="sort" value="price-high"> Price: High to Low</label>
+                    <label class="filter-option"><input type="radio" name="sort" value="name-asc"> Name: A to Z</label>
+                </div>
+                <div class="filter-section">
+                    <h3 class="filter-section-title">Price Range</h3>
+                    <label class="filter-option"><input type="radio" name="price" value="all" checked> All Prices</label>
+                    <label class="filter-option"><input type="radio" name="price" value="0-3000"> Under Rs.3,000</label>
+                    <label class="filter-option"><input type="radio" name="price" value="3000-6000"> Rs.3,000 - Rs.6,000</label>
+                    <div class="price-range">
+                        <input type="number" class="price-input" id="minPrice" placeholder="Min Price">
+                        <input type="number" class="price-input" id="maxPrice" placeholder="Max Price">
+                    </div>
+                </div>
+                <button class="apply-filters" onclick="applyFilters()">Apply Filters</button>
+                <button class="clear-filters" onclick="clearAllFilters()">Clear All Filters</button>
+            </div>
+        </div>
+
+        <div class="product-grid" id="productGrid">
+            <!-- Classic Formal Shirt -->
+            <div class="product-card" data-category="formal" data-price="3500" data-name="Classic Formal">
+                <div class="discount-badge bestseller-badge">BESTSELLER</div>
+                <div class="product-image">
+                    <div class="material-tag">COTTON</div>
+                    <img id="classic-formal-image" src="../images/products/whiteshirt.png" alt="Classic Formal Shirt">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Classic Formal</h3>
+                    <p class="product-description">Premium cotton formal shirt with French cuffs</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.3,500.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options" data-sizes="S,M,L,XL">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn selected">M</button>
+                            <button class="size-btn">L</button>
+                            <button class="size-btn">XL</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #ffffff; border-color: #333;" onclick="changeShirtImage('classic-formal-image', '../images/products/whiteshirt.png', this)"></div>
+                            <div class="color-dot" style="background-color: #87ceeb;" onclick="changeShirtImage('classic-formal-image', '../images/products/blueshirt.png', this)"></div>
+                            <div class="color-dot" style="background-color: #ffc0cb;" onclick="changeShirtImage('classic-formal-image', '../images/products/pinkshirt.png', this)"></div>
+                            <div class="color-dot" style="background-color: #75797a;" onclick="changeShirtImage('classic-formal-image', '../images/products/greystriped.png', this)"></div>
+                            <div class="color-dot" style="background-color: #dda0dd;" onclick="changeShirtImage('classic-formal-image', '../images/products/purplestriped.png', this)"></div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(1)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(1)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Check Casual Shirt -->
+            <div class="product-card" data-category="casual" data-price="2800" data-name="Check Casual">
+                <div class="discount-badge">25% OFF</div>
+                <div class="product-image">
+                    <div class="material-tag">FLANNEL</div>
+                    <img id="check-casual-image" src="../images/products/checkblue.png" alt="Check Casual Shirt">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Check Casual</h3>
+                    <p class="product-description">Comfortable flannel check shirt for weekends</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.2,800.00</span>
+                        <span class="original-price">Rs.3,600.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options" data-sizes="S,M,L,XL">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn selected">M</button>
+                            <button class="size-btn">L</button>
+                            <button class="size-btn">XL</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #2196f3;" onclick="changeShirtImage('check-casual-image', '../images/products/checkblue.png', this)"></div>
+                            <div class="color-dot" style="background-color: #4caf50;" onclick="changeShirtImage('check-casual-image', '../images/products/checkgreen.png', this)"></div>
+                            <div class="color-dot" style="background-color: #d32f2f;" onclick="changeShirtImage('check-casual-image', '../images/products/checkred.png', this)"></div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(2)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(2)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premium Polo Shirt -->
+            <div class="product-card" data-category="polo" data-price="4200" data-name="Premium Polo">
+                <div class="discount-badge new-badge">NEW</div>
+                <div class="product-image">
+                    <div class="material-tag">PIQUE</div>
+                    <img id="premium-polo-image" src="../images/products/greenpolo.png" alt="Premium Polo Shirt">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Premium Polo</h3>
+                    <p class="product-description">Luxury pique cotton polo with contrast collar</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.4,200.00</span>
+                    </div> 
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options" data-sizes="S,M,L,XL">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn selected">M</button>
+                            <button class="size-btn">L</button>
+                            <button class="size-btn">XL</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #2e7d32;" onclick="changeShirtImage('premium-polo-image', '../images/products/greenpolo.png', this)"></div>
+                            <div class="color-dot" style="background-color: #1565c0;" onclick="changeShirtImage('premium-polo-image', '../images/products/bluepolo.png', this)"></div>
+                            <div class="color-dot" style="background-color: #424242;" onclick="changeShirtImage('premium-polo-image', '../images/products/blackpolo.png', this)"></div>
+                            <div class="color-dot" style="background-color: #ffffff; border-color: #333;" onclick="changeShirtImage('premium-polo-image', '../images/products/whitepolo.png', this)"></div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(3)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(3)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Classic Henley Shirt -->
+            <div class="product-card" data-category="henley" data-price="2400" data-name="Classic Henley">
+                <div class="discount-badge">35% OFF</div>
+                <div class="product-image">
+                    <div class="material-tag">JERSEY</div>
+                    <img id="classic-henley-image" src="../images/products/henleygray.png" alt="Classic Henley Shirt">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Classic Henley</h3>
+                    <p class="product-description">Comfortable jersey henley with button placket</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.2,400.00</span>
+                        <span class="original-price">Rs.3,700.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options" data-sizes="S,M,L,XL">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn selected">M</button>
+                            <button class="size-btn">L</button>
+                            <button class="size-btn">XL</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #616161;" onclick="changeShirtImage('classic-henley-image', '../images/products/henleygray.png', this)"></div>
+                            <div class="color-dot" style="background-color: #ffffff; border-color: #333;" onclick="changeShirtImage('classic-henley-image', '../images/products/henleywhite.png', this)"></div>
+                            <div class="color-dot" style="background-color: #1976d2;" onclick="changeShirtImage('classic-henley-image', '../images/products/henleyblue.png', this)"></div>
+                            <div class="color-dot" style="background-color: #8d6e63;" onclick="changeShirtImage('classic-henley-image', '../images/products/henleybrown.png', this)"></div>
+                            <div class="color-dot" style="background-color: #2e7d32;" onclick="changeShirtImage('classic-henley-image', '../images/products/henleygreen.png', this)"></div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(4)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(4)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Formal Shirt -->
+            <div class="product-card" data-category="formal" data-price="4800" data-name="Business Formal">
+                <div class="product-image">
+                    <div class="material-tag">PREMIUM</div>
+                    <img id="business-formal-image" src="../images/products/businessblue.png" alt="Business Formal Shirt">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Business Formal</h3>
+                    <p class="product-description">Premium striped dress shirt with spread collar</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.4,800.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options" data-sizes="S,M,L,XL">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn selected">M</button>
+                            <button class="size-btn">L</button>
+                            <button class="size-btn">XL</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #1565c0;" onclick="changeShirtImage('business-formal-image', '../images/products/businessblue.png', this)"></div>
+                            <div class="color-dot" style="background-color: #424242;" onclick="changeShirtImage('business-formal-image', '../images/products/businessblack.png', this)"></div>
+                            <div class="color-dot" style="background-color: #ffffff; border-color: #333;" onclick="changeShirtImage('business-formal-image', '../images/products/businesswhite.png', this)"></div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(5)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(5)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Oxford Casual Shirt -->
+            <div class="product-card" data-category="casual" data-price="3800" data-name="Oxford Casual">
+                <div class="product-image">
+                    <div class="material-tag">OXFORD</div>
+                    <img id="oxford-casual-image" src="../images/products/oxfordbrown.png" alt="Oxford Casual Shirt">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Oxford Casual</h3>
+                    <p class="product-description">Classic Oxford weave cotton shirt</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.3,800.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options" data-sizes="S,M,L,XL">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn selected">M</button>
+                            <button class="size-btn">L</button>
+                            <button class="size-btn">XL</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #795548;" onclick="changeShirtImage('oxford-casual-image', '../images/products/oxfordbrown.png', this)"></div>
+                            <div class="color-dot" style="background-color: #ffffff; border-color: #333;" onclick="changeShirtImage('oxford-casual-image', '../images/products/oxfordwhite.png', this)"></div>
+                            <div class="color-dot" style="background-color: #87ceeb;" onclick="changeShirtImage('oxford-casual-image', '../images/products/oxfordblue.png', this)"></div>
+                            <div class="color-dot" style="background-color: #ff6b6b;" onclick="changeShirtImage('oxford-casual-image', '../images/products/oxfordpink.png', this)"></div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(6)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(6)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFilter() {
+            document.getElementById('filterModal').classList.add('active');
+        }
+
+        function closeFilter() {
+            document.getElementById('filterModal').classList.remove('active');
+        }
+
+        function filterByCategory(category, clickedBtn) {
+            const cards = document.querySelectorAll('.product-card');
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            
+            categoryBtns.forEach(btn => btn.classList.remove('active'));
+            clickedBtn.classList.add('active');
+            
+            let visibleCount = 0;
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            document.getElementById('productCount').textContent = `${visibleCount} PRODUCTS`;
+        }
+
+        function applyFilters() {
+            const cards = document.querySelectorAll('.product-card');
+            const sortBy = document.querySelector('input[name="sort"]:checked').value;
+            const priceRange = document.querySelector('input[name="price"]:checked').value;
+            const minPrice = document.getElementById('minPrice').value;
+            const maxPrice = document.getElementById('maxPrice').value;
+            
+            let filteredCards = Array.from(cards);
+            
+            filteredCards = filteredCards.filter(card => {
+                const price = parseInt(card.dataset.price);
+                
+                if (minPrice && price < parseInt(minPrice)) return false;
+                if (maxPrice && price > parseInt(maxPrice)) return false;
+                
+                if (priceRange !== 'all') {
+                    switch (priceRange) {
+                        case '0-3000': return price < 3000;
+                        case '3000-6000': return price >= 3000 && price <= 6000;
+                    }
+                }
+                return true;
+            });
+            
+            cards.forEach(card => card.style.display = 'none');
+            filteredCards.forEach(card => card.style.display = 'block');
+            
+            if (sortBy !== 'featured') {
+                const productGrid = document.getElementById('productGrid');
+                filteredCards.sort((a, b) => {
+                    switch (sortBy) {
+                        case 'price-low': return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+                        case 'price-high': return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+                        case 'name-asc': return a.dataset.name.localeCompare(b.dataset.name);
+                        default: return 0;
+                    }
+                });
+                filteredCards.forEach(card => productGrid.appendChild(card));
+            }
+            
+            document.getElementById('productCount').textContent = `${filteredCards.length} PRODUCTS`;
+            closeFilter();
+        }
+
+        function clearAllFilters() {
+            document.querySelector('input[name="sort"][value="featured"]').checked = true;
+            document.querySelector('input[name="price"][value="all"]').checked = true;
+            document.getElementById('minPrice').value = '';
+            document.getElementById('maxPrice').value = '';
+            
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => card.style.display = 'block');
+            
+            document.querySelector('.category-btn.active').classList.remove('active');
+            document.querySelector('.category-btn[onclick*="all"]').classList.add('active');
+            
+            document.getElementById('productCount').textContent = `${cards.length} PRODUCTS`;
+            closeFilter();
+        }
+
+        function addToCart(productId) {
+            const button = event.target;
+            const card = button.closest('.product-card');
+            const productName = card.querySelector('.product-name').textContent;
+            
+            button.style.background = '#27ae60';
+            button.textContent = 'Added!';
+            
+            setTimeout(() => {
+                button.style.background = '#333';
+                button.textContent = 'Add to Cart';
+            }, 2000);
+        }
+
+        function quickBuy(productId) {
+            const card = event.target.closest('.product-card');
+            const productName = card.querySelector('.product-name').textContent;
+            const price = card.querySelector('.current-price').textContent;
+            
+            alert(`Quick Buy: ${productName}\nPrice: ${price}\n\nRedirecting to checkout...`);
+        }
+
+        function changeShirtImage(imgId, newSrc, clickedDot) {
+            const imgElement = document.getElementById(imgId);
+            if (imgElement) {
+                imgElement.src = newSrc;
+            }
+
+            // Remove "active" class from all dots in this color section
+            const allDots = clickedDot.parentElement.querySelectorAll('.color-dot');
+            allDots.forEach(dot => dot.classList.remove('active'));
+
+            // Add "active" to clicked dot
+            clickedDot.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('filterModal').addEventListener('click', function(e) {
+                if (e.target === this) closeFilter();
+            });
+            
+            document.querySelectorAll('.size-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const siblings = this.parentElement.querySelectorAll('.size-btn');
+                    siblings.forEach(sibling => sibling.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
