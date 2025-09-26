@@ -106,8 +106,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const slides = document.querySelectorAll('.carousel-slide');
   const nextBtn = document.querySelector('.carousel-btn.next');
   const prevBtn = document.querySelector('.carousel-btn.prev');
+  const heroCarousel = document.querySelector('.hero-carousel');
   let currentSlide = 0;
   const totalSlides = slides.length;
+
+  // Touch/swipe variables
+  let startX = 0;
+  let endX = 0;
+  let isDragging = false;
+  const minSwipeDistance = 50;
+  let slideInterval = null; // Initialize interval variable
 
   if (carouselInner && slides.length && nextBtn && prevBtn) {
     function updateSlidePosition() {
@@ -124,6 +132,14 @@ document.addEventListener('DOMContentLoaded', () => {
       updateSlidePosition();
     }
 
+    function resetInterval() {
+      if (slideInterval) {
+        clearInterval(slideInterval);
+      }
+      slideInterval = setInterval(nextSlide, 5000);
+    }
+
+    // Button event listeners
     nextBtn.addEventListener('click', () => {
       nextSlide();
       resetInterval();
@@ -134,13 +150,72 @@ document.addEventListener('DOMContentLoaded', () => {
       resetInterval();
     });
 
-    let slideInterval = setInterval(nextSlide, 5000);
+    // Touch event listeners for swipe functionality
+    if (heroCarousel) {
+      // Touch events for mobile
+      heroCarousel.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+        if (slideInterval) {
+          clearInterval(slideInterval);
+        }
+      }, { passive: true });
 
-    function resetInterval() {
-      clearInterval(slideInterval);
-      slideInterval = setInterval(nextSlide, 5000);
+      heroCarousel.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        endX = e.touches[0].clientX;
+      }, { passive: true });
+
+      heroCarousel.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        
+        const deltaX = startX - endX;
+        
+        if (Math.abs(deltaX) > minSwipeDistance) {
+          if (deltaX > 0) {
+            nextSlide(); // Swipe left - next slide
+          } else {
+            prevSlide(); // Swipe right - previous slide
+          }
+        }
+        resetInterval();
+      });
+
+      // Mouse events for desktop drag
+      heroCarousel.addEventListener('mousedown', (e) => {
+        startX = e.clientX;
+        isDragging = true;
+        if (slideInterval) {
+          clearInterval(slideInterval);
+        }
+        e.preventDefault();
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        endX = e.clientX;
+      });
+
+      document.addEventListener('mouseup', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        
+        const deltaX = startX - endX;
+        
+        if (Math.abs(deltaX) > minSwipeDistance) {
+          if (deltaX > 0) {
+            nextSlide(); // Drag left - next slide
+          } else {
+            prevSlide(); // Drag right - previous slide
+          }
+        }
+        resetInterval();
+      });
     }
 
+    // Start the auto-advance interval
+    slideInterval = setInterval(nextSlide, 5000);
     updateSlidePosition();
   }
 
@@ -284,27 +359,20 @@ function initVerticalSlide() {
         });
         gsap.set(next, { zIndex: 1, yPercent: 0 });
         currentIndex = index;
-        isAnimating = false;
+        isAnimating = false; // ✅ Reset animation state
       }
     });
 
-    tl.to(current, { yPercent: -direction * 100, opacity: 0 }, 0);
-    tl.to(next, { yPercent: 0, opacity: 1 }, 0);
+    tl.fromTo(next, { yPercent: direction * 100 }, { yPercent: 0 });
+    tl.fromTo(current, { yPercent: 0 }, { yPercent: -direction * 100 }, "<");
   }
 
   Observer.create({
-    type: "wheel,touch,pointer",
-    tolerance: 10,
-    preventDefault: true,
+    type: "wheel,touch",
+    wheelSpeed: -1,
     onDown: () => showSection(currentIndex + 1, 1),
-    onUp: () => showSection(currentIndex - 1, -1)
-  });
-
-  sections.forEach((section, i) => {
-    if (i !== 0) {
-      gsap.set(section, { opacity: 0, pointerEvents: "none", yPercent: 0, zIndex: 0 });
-    } else {
-      gsap.set(section, { opacity: 1, pointerEvents: "auto", yPercent: 0, zIndex: 1 });
-    }
+    onUp: () => showSection(currentIndex - 1, -1),
+    tolerance: 10,
+    preventDefault: true
   });
 }

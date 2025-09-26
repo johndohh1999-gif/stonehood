@@ -490,6 +490,320 @@ header {
 }
 
 @media (max-width: 768px) {
+  /* Header adjustments */
+  header {
+    padding: 0 20px;
+    height: 60px;
+  }
+
+  .left-header {
+    height: 60px;
+    gap: 15px;
+  }
+
+  .menu-toggle {
+    font-size: 24px;
+  }
+
+  .logo {
+    left: 50px;
+    height: 60px;
+  }
+
+  .logo img {
+    max-height: 50px;
+    height: auto;
+    margin-top: 5px;
+  }
+
+  /* Prevent fixed header overlap */
+  main {
+    padding-top: 60px;
+  }
+
+  .hero-carousel {
+    margin-top: -60px;
+    height: auto;
+    height: 100vh; /* fallback */
+    height: 100svh; /* modern mobile viewport */
+  }
+
+  .nav-buttons {
+    gap: 25px;
+  }
+
+  .search-wrapper.active .nav-search-input,
+  .search-wrapper:hover .nav-search-input {
+    width: 200px;
+    max-width: 70vw;
+    padding: 6px 10px;
+  }
+
+  /* Mobile menu */
+  .menu {
+    width: 85vw;
+    padding: 30px 20px;
+  }
+
+  .menu h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  .menu-top-row {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .category-group {
+    width: 100%;
+  }
+
+  .menu-category {
+    font-size: 18px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .submenu {
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .menu-column.secondary {
+    margin-top: 15px;
+  }
+
+  .menu-item {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .close {
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+  }
+
+  /* Hero carousel mobile */
+  .carousel-caption {
+    padding: 20px;
+  }
+
+  .carousel-caption h1 {
+    font-size: 28px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    transform: none; /* Remove scale distortion */
+  }
+
+  .carousel-caption p {
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    transform: none; /* Remove scale distortion */
+  }
+
+  .cta {
+    font-size: 14px;
+    padding: 12px 30px;
+    margin-top: 20px;
+  }
+
+  .carousel-btn {
+    font-size: 20px;
+    padding: 8px 12px;
+  }
+
+  .carousel-btn.prev {
+    left: 10px;
+  }
+
+  .carousel-btn.next {
+    right: 10px;
+  }
+
+  /* Login modal mobile */
+  .login-container {
+    width: 95vw;
+    height: auto;
+    min-height: 500px;
+    flex-direction: column;
+    max-width: none;
+  }
+
+  .login-left {
+    flex: none;
+    height: 150px;
+    width: 100%;
+  }
+
+  .login-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .login-right {
+    flex: none;
+    padding: 20px 15px;
+  }
+
+  .login-right h1 {
+    font-size: 20px;
+  }
+
+  .form-input, #password {
+    max-width: 100%;
+    padding: 12px 35px 12px 10px;
+  }
+
+  .password-container {
+    max-width: 100%;
+  }
+
+  .login-btn, .signup-btn {
+    max-width: 100%;
+  }
+
+  .close-login {
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+  }
+
+  /* Products section mobile */
+  .products {
+    padding: 40px 20px;
+  }
+
+  .products h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  .product-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .product-card {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  /* Footer mobile */
+  footer {
+    padding: 20px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small screens */
+  header {
+    padding: 0 15px;
+  }
+
+  .logo {
+    left: 40px;
+  }
+
+  .nav-buttons {
+    gap: 20px;
+  }
+
+  .search-wrapper.active .nav-search-input,
+  .search-wrapper:hover .nav-search-input {
+    width: 150px;
+  }
+
+  .menu {
+    width: 95vw;
+    max-width: 60vw;
+    padding: 20px 15px;
+  }
+
+  .carousel-caption h1 {
+    font-size: 24px;
+    letter-spacing: 1px;
+    transform: none; /* Remove scale distortion */
+  }
+
+  .carousel-caption p {
+    font-size: 14px;
+    transform: none; /* Remove scale distortion */
+  }
+
+  .cta {
+    font-size: 12px;
+    padding: 10px 25px;
+  }
+
+  .login-container {
+    width: 98vw;
+    margin: 10px;
+  }
+
+  .login-right {
+    padding: 15px 10px;
+  }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero-carousel {
+    height: 100vh;
+    height: 100svh; /* modern mobile viewport */
+  }
+
+  .carousel-caption {
+    padding: 15px;
+  }
+
+  .carousel-caption h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .carousel-caption p {
+    font-size: 14px;
+  }
+
+  .cta {
+    margin-top: 15px;
+    padding: 10px 25px;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .nav-icon {
+    padding: 10px;
+  }
+
+  .menu-category, .menu-item {
+    padding: 15px 20px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel-btn {
+    padding: 15px 20px;
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .cta {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}@media (max-width: 768px) {
   .carousel-caption h1 {
     font-size: 2rem;
   }
@@ -543,7 +857,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10000;
+  z-index: 13000; 
   display: none;
 }
 
@@ -580,7 +894,7 @@ footer {
 
 .login-right {
   flex: 0.7;
-  padding: 24px 20px;
+  padding: 24px 10px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -593,14 +907,14 @@ footer {
 .login-right h1 {
   font-size: 24px;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   color: #111;
 }
 
 .login-right p {
   font-size: 15px;
   color: #666;
-  margin-bottom: 4px;
+  margin-bottom: 10px;
   line-height: 1.5;
 }
 
@@ -614,12 +928,12 @@ footer {
 .form-input, #password {
   width: 100%;
   max-width: 400px;
-  padding: 14px 40px 14px 12px;
+  padding: 9px 34px 13px 12px;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 14px;
-  margin-bottom: 16px;
+  margin-bottom: 15px;
 }
 
 .password-container {
@@ -657,7 +971,7 @@ footer {
   display: block;
   margin: 0 auto;
   border-radius: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
@@ -673,7 +987,7 @@ footer {
   font-size: 12px;
   color: #777;
   text-decoration: none;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   margin-top: -10px;
 }
 
@@ -729,7 +1043,7 @@ footer {
   font-size: 15px;
   display: block;
   margin: 0 auto; 
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -740,7 +1054,7 @@ footer {
 }
 .divider {
   text-align: center;
-  margin: 12px 0;
+  margin: 10px 0;
   font-size: 14px;
   color: #666;
 }
@@ -758,6 +1072,8 @@ footer {
   position: absolute;
   width: 100%;
   height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   backface-visibility: hidden;
   background: white;
   padding: 24px 20px;
