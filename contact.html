@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Stonehood</title>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('images/backcu.png') center/cover fixed;
+            color: #EEECE7;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+
+header {
+  position: fixed;
+  height: 70px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: transparent;
+  padding: 0px 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10000;
+}
+
+.left-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  height: 70px;
+}
+
+.menu-toggle {
+  font-size: 28px;
+  cursor: pointer;
+  color: #EEECE7;
+  z-index: 1100;
+}
+
+.logo {
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 100px;
+  width: auto;
+  z-index: 1000;
+}
+
+.logo img {
+  height: 120px;
+  margin-top: 10px;
+  width: auto;
+  display: block;
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  position: relative;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav-icon {
+  color: white;
+  font-size: initial;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  z-index: 2; 
+}
+
+.nav-icon i:hover {
+  color: #D3D3D3;
+}
+
+.nav-search-input {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background: transparent;
+  color: #fff;
+  border-radius: 0;
+}
+
+.nav-search-input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.nav-search-input {
+  position: absolute;
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  padding: 8px 0;
+  background: rgba(255, 255, 255, 0.445);
+  color: #fff;
+  border-radius: 25px;
+  opacity: 0;
+  pointer-events: none;
+  transition: width 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+  white-space: nowrap;
+}
+
+.search-wrapper.active .nav-search-input {
+  width: 500px;
+  padding: 8px 12px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.search-wrapper:hover .nav-search-input,
+.search-wrapper.active .nav-search-input {
+  width: 500px;
+  padding: 8px 12px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 45vw;
+  height: 100vh;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 11000;
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+  overflow: visible;
+}
+
+.menu-top-row {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.menu-subcategories {
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.submenu {
+  display: none;
+  flex-direction: column;
+  margin: 0 15px;
+  background: transparent;
+  width: auto;
+  max-width: none;
+}
+
+.submenu.active {
+  display: flex;
+}
+
+.submenu {
+  animation: none !important;
+  transform: none !important;
+}
+
+.menu-column.secondary {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.category-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.menu-category {
+  cursor: pointer;
+}
+
+.submenu {
+  margin-top: 10px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.submenu.active {
+  display: flex;
+}
+
+.menu-category {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu-category:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.menu-category.active {
+  background-color: #fff;
+  color: #000;
+}
+
+.menu-column.secondary {
+  margin-top: 20px;
+}
+
+.menu-item:hover {
+  color: #000;
+  transform: translateX(-3px);
+  transition: all 0.3s ease;
+}
+
+.menu-item:not(:hover) {
+  transform: translateX(0);
+  transition: all 0.3s ease;
+}
+
+.menu.open {
+  transform: translateX(0);
+}
+
+.menu h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: #fff;
+  margin-bottom: 50px;
+}
+
+.menu-top-row {
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+  width: 100%;
+  max-width: none;
+}
+
+.menu-subcategories {
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 600px;
+  overflow: visible !important;
+}
+
+.submenu {
+  display: none;
+  flex-direction: column;
+  gap: 15px;
+  width: 150px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: #fff;
+  position: relative;
+}
+
+.submenu.active {
+  display: flex;
+}
+
+#submenu-juniors {
+  width: 150px;
+}
+
+.menu-category {
+  cursor: pointer;
+}
+
+.submenu {
+  animation: none !important;
+  transition: none !important;
+}
+
+.menu-category {
+  cursor: pointer;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background-color: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+}
+
+.menu-category.active, .menu-category:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+@media (min-width: 768px) {
+  .menu-subcategories {
+    margin-top: 0;
+  }
+
+  .menu-category:hover + .menu-subcategories .submenu {
+    display: none;
+    opacity: 0;
+  }
+}
+
+.menu-divider {
+  width: 100%;
+  max-width: 600px;
+  border: none;
+  border-bottom: 2px solid #fff;
+  margin-bottom: 30px;
+  opacity: 0.4;
+}
+
+.menu-column {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.menu-item {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu-item:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+  z-index: 12000;
+}
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 20px 40px;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page-title h1 {
+            font-size: 3.5em;
+            font-weight: 900;
+            letter-spacing: 3px;
+            background: linear-gradient(45deg, #EEECE7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .page-title p {
+            font-size: 1.2em;
+            color: #ccc;
+            letter-spacing: 1px;
+        }
+
+        .content-wrapper {
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .contact-form h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #EEECE7;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #EEECE7;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: #EEECE7;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #EEECE7;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, #EEECE7);
+            border: none;
+            border-radius: 10px;
+            color: #000;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.548);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .message {
+            display: none;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .success-message {
+            background: linear-gradient(45deg, #28a745, #20c997);
+        }
+
+        .error-message {
+            background: linear-gradient(45deg, #dc3545, #c82333);
+        }
+
+        .message.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        .loader {
+            display: none;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #EEECE7;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        .loader.show {
+            display: block;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer Styles */
+        footer {
+            background: transparent;
+            padding: 60px 0px 0px;
+            margin-top: 100px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-section h3 {
+            color: #EEECE7;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .footer-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-item i {
+            color: #EEECE7;
+            font-size: 1.3em;
+            margin-top: 3px;
+        }
+
+        .footer-item-content h4 {
+            color: #EEECE7;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .footer-item-content p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: center;       
+            align-items: center;          
+            height: 40px;                 
+            margin-top: 5px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);  
+            width: 100%;
+            background-color: #fff;
+        }
+
+        .footer-bottom p {
+            color: #888;
+            margin: 0;                     
+        }
+
+
+        @media (max-width: 968px) {
+            .page-title h1 {
+                font-size: 2.5em;
+            }
+
+            header {
+                padding: 1rem;
+            }
+
+            .nav-buttons {
+                gap: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-item {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="left-header">
+            <div class="menu-toggle" id="menuToggle">&#9776;</div>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo 1.png" alt="Stonehood Logo" />
+                </a>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <div class="search-wrapper" id="searchWrapper">
+                <a href="#" class="nav-icon" id="searchIcon">
+                    <i class="fas fa-search"></i>
+                </a>
+                <input
+                    type="text"
+                    class="nav-search-input"
+                    id="searchInput"
+                    placeholder="Search..."
+                />
+            </div>
+            <a href="#" class="nav-icon" id="loginBtn"><i class="fas fa-user"></i></a>
+            <a href="#" class="nav-icon"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </header>
+
+    <nav class="menu" id="fullMenu">
+  <div class="close" id="closeMenu">&times;</div>
+  <h1>Stonehood</h1>
+
+  <div class="menu-top-row">
+    <div class="category-group" data-category="men">
+      <a href="men/men.html" class="menu-category menu-item">Men</a>
+      <div class="submenu" id="submenu-men">
+        <a href="men/men-hoodies.html" class="menu-item">Hoodies</a>
+        <a href="men/men-jackets.html" class="menu-item">Jackets</a>
+        <a href="men/men-shirts.html" class="menu-item">Shirts</a>
+        <a href="men/men-footwear.html" class="menu-item">Footwear</a>
+      </div>
+    </div>
+
+    <div class="category-group" data-category="women">
+      <a href="women/women.html" class="menu-category menu-item">Women</a>
+      <div class="submenu" id="submenu-women">
+        <a href="women/women-tops.html" class="menu-item">Tops</a>
+        <a href="women/women-dresses.html" class="menu-item">Dresses</a>
+        <a href="women/women-outerwear.html" class="menu-item">Outerwear</a>
+        <a href="women/women-footwear.html" class="menu-item">Footwear</a>
+      </div>
+    </div>
+
+    <div class="category-group" data-category="juniors">
+      <a href="#" class="menu-category menu-item">Juniors</a>
+      <div class="submenu" id="submenu-juniors">
+        <a href="#" class="menu-item">T-Shirts</a>
+        <a href="#" class="menu-item">Hoodies</a>
+        <a href="#" class="menu-item">Shorts</a>
+        <a href="#" class="menu-item">Sneakers</a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="menu-divider" />
+
+  <div class="menu-column secondary">
+    <a href="#" class="menu-item">Sale</a>
+    <a href="#" class="menu-item">Clothing</a>
+    <a href="#" class="menu-item">Footwear</a>
+    <a href="#" class="menu-item">Fragrances</a>
+    <a href="../contact.html" class="menu-item">Contact Us</a>
+  </div>
+</nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="page-title">
+            <h1>CONTACT US</h1>
+            <p>Get in touch with Stonehood</p>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="contact-form">
+                <h2>Send Us a Message</h2>
+                <form id="contactForm" action="https://formspree.io/f/xpwypydj" method="POST">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Inquiry Type *</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select inquiry type</option>
+                            <option value="product">Product Inquiry</option>
+                            <option value="order">Order Status</option>
+                            <option value="shipping">Shipping</option>
+                            <option value="returns">Returns & Exchanges</option>
+                            <option value="general">General Question</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+
+                    <button type="submit" id="submitBtn">Send Message</button>
+
+                    <div class="loader" id="loader"></div>
+
+                    <div class="message success-message" id="successMessage">
+                        ✓ Thank you! Your message has been sent successfully. We'll get back to you soon!
+                    </div>
+
+                    <div class="message error-message" id="errorMessage">
+                        ✗ Oops! Something went wrong. Please try again or email us directly.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <div class="footer-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="footer-item-content">
+                        <h4>Location</h4>
+                        <p>123 Street Avenue, Fashion District<br>New York, NY 10001</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <div class="footer-item">
+                    <i class="fas fa-envelope"></i>
+                    <div class="footer-item-content">
+                        <h4>Email</h4>
+                        <p>info@stonehood.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <div class="footer-item">
+                    <i class="fas fa-phone"></i>
+                    <div class="footer-item-content">
+                        <h4>Phone</h4>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Stonehood. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+// === FULL MENU LOGIC ===
+  const fullMenu = document.getElementById('fullMenu');
+  const menuToggle = document.getElementById('menuToggle');
+  const closeMenu = document.getElementById('closeMenu');
+  const categoryButtons = document.querySelectorAll('.menu-category');
+  const submenus = document.querySelectorAll('.submenu');
+
+  function hideAllSubmenus() {
+    submenus.forEach(menu => menu.classList.remove('active'));
+    categoryButtons.forEach(btn => btn.classList.remove('active'));
+  }
+
+  if (menuToggle) {
+    menuToggle.addEventListener('click', () => {
+      fullMenu.classList.add('open');
+    });
+  }
+
+  if (closeMenu) {
+    closeMenu.addEventListener('click', () => {
+      fullMenu.classList.remove('open');
+      hideAllSubmenus();
+    });
+  }
+
+  document.addEventListener('click', (e) => {
+    if (
+      fullMenu.classList.contains('open') &&
+      !fullMenu.contains(e.target) &&
+      !menuToggle.contains(e.target)
+    ) {
+      fullMenu.classList.remove('open');
+      hideAllSubmenus();
+    }
+  });
+
+  categoryButtons.forEach(button => {
+    const target = button.parentElement.getAttribute('data-category');
+    const submenu = document.getElementById(`submenu-${target}`);
+
+    if (!submenu) return;
+
+    button.addEventListener('mouseenter', () => {
+      hideAllSubmenus();
+      submenu.classList.add('active');
+      button.classList.add('active');
+    });
+
+    button.addEventListener('mouseleave', () => {
+      setTimeout(() => {
+        if (!submenu.matches(':hover') && !button.matches(':hover')) {
+          submenu.classList.remove('active');
+          button.classList.remove('active');
+        }
+      }, 300);
+    });
+
+    submenu.addEventListener('mouseenter', () => {
+      submenu.classList.add('active');
+      button.classList.add('active');
+    });
+
+    submenu.addEventListener('mouseleave', () => {
+      setTimeout(() => {
+        if (!submenu.matches(':hover') && !button.matches(':hover')) {
+          submenu.classList.remove('active');
+          button.classList.remove('active');
+        }
+      }, 300);
+    });
+  });
+
+  if (fullMenu) {
+    fullMenu.addEventListener('mouseleave', () => {
+      hideAllSubmenus();
+    });
+  }
+
+        // Search Toggle
+        const searchIcon = document.getElementById('searchIcon');
+        const searchInput = document.getElementById('searchInput');
+        const searchWrapper = document.getElementById('searchWrapper');
+
+        if (searchIcon && searchInput && searchWrapper) {
+            searchIcon.addEventListener('click', e => {
+                e.preventDefault();
+                e.stopPropagation();
+                searchWrapper.classList.toggle('active');
+                if (searchWrapper.classList.contains('active')) {
+                    searchInput.focus();
+                }
+            });
+
+            searchWrapper.addEventListener('click', e => e.stopPropagation());
+
+            document.addEventListener('click', e => {
+                if (!searchWrapper.contains(e.target)) {
+                    searchWrapper.classList.remove('active');
+                }
+            });
+        }
+
+        // Form Submission
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const loader = document.getElementById('loader');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            successMessage.classList.remove('show');
+            errorMessage.classList.remove('show');
+            
+            loader.classList.add('show');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'SENDING...';
+            
+            try {
+                const formData = new FormData(form);
+                
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                loader.classList.remove('show');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'SEND MESSAGE';
+                
+                if (response.ok) {
+                    successMessage.classList.add('show');
+                    form.reset();
+                    
+                    setTimeout(() => {
+                        successMessage.classList.remove('show');
+                    }, 5000);
+                } else {
+                    errorMessage.classList.add('show');
+                    setTimeout(() => {
+                        errorMessage.classList.remove('show');
+                    }, 5000);
+                }
+            } catch (error) {
+                loader.classList.remove('show');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'SEND MESSAGE';
+                errorMessage.classList.add('show');
+                
+                setTimeout(() => {
+                    errorMessage.classList.remove('show');
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Juniors - Stonehood</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="juniors.css" />
+  <link rel="stylesheet" href="../search.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="left-header">
+      <div class="menu-toggle" id="menuToggle">&#9776;</div>
+      <div class="logo">
+        <a href="../index.html">
+          <img src="../images/logo 1.png" alt="Stonehood Logo" />
+        </a>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <div class="search-wrapper" id="searchWrapper">
+        <a href="#" class="nav-icon" id="searchIcon">
+          <i class="fas fa-search"></i>
+        </a>
+        <input
+          type="text"
+          class="nav-search-input"
+          id="searchInput"
+          placeholder="Search..."
+        />
+      </div>
+      <a href="#" class="nav-icon" id="loginBtn"><i class="fas fa-user"></i></a>
+      <a href="#" class="nav-icon"><i class="fas fa-shopping-cart"></i></a>
+    </div>
+  </header>
+
+  <nav class="menu" id="fullMenu">
+  <div class="close" id="closeMenu">&times;</div>
+  <h1>Stonehood</h1>
+
+  <div class="menu-top-row">
+    <div class="category-group" data-category="men">
+      <a href="../men/men.html" class="menu-category menu-item">Men</a>
+      <div class="submenu" id="submenu-men">
+        <a href="../men/men-hoodies.html" class="menu-item">Hoodies</a>
+        <a href="../men/men-jackets.html" class="menu-item">Jackets</a>
+        <a href="../men/men-shirts.html" class="menu-item">Shirts</a>
+        <a href="../men/men-footwear.html" class="menu-item">Footwear</a>
+      </div>
+    </div>
+
+    <div class="category-group" data-category="women">
+      <a href="../women/women.html" class="menu-category menu-item">Women</a>
+      <div class="submenu" id="submenu-women">
+        <a href="../women/women-tops.html" class="menu-item">Tops</a>
+        <a href="../women/women-dresses.html" class="menu-item">Dresses</a>
+        <a href="../women/women-outerwear.html" class="menu-item">Outerwear</a>
+        <a href="../women/women-footwear.html" class="menu-item">Footwear</a>
+      </div>
+    </div>
+
+    <div class="category-group" data-category="juniors">
+      <a href="juniors.html" class="menu-category menu-item">Juniors</a>
+      <div class="submenu" id="submenu-juniors">
+        <a href="juniors-tshirts.html" class="menu-item">T-Shirts</a>
+        <a href="juniors-hoodies.html" class="menu-item">Hoodies</a>
+        <a href="juniors-shorts.html" class="menu-item">Shorts</a>
+        <a href="juniors-sneakers.html" class="menu-item">Sneakers</a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="menu-divider" />
+
+  <div class="menu-column secondary">
+    <a href="#" class="menu-item">Sale</a>
+    <a href="#" class="menu-item">Clothing</a>
+    <a href="#" class="menu-item">Footwear</a>
+    <a href="#" class="menu-item">Fragrances</a>
+    <a href="../contact.html" class="menu-item">Contact Us</a>
+  </div>
+</nav>
+
+  <!-- Main Sections -->
+  <!-- IMAGE PLACEHOLDER: Add background image for T-Shirts section in juniors.css .first class -->
+  <section class="section first active" data-page="juniors-tshirts.html">T-Shirts</section>
+  
+  <!-- IMAGE PLACEHOLDER: Add background image for Hoodies section in juniors.css .second class -->
+  <section class="section second" data-page="juniors-hoodies.html">Hoodies</section>
+  
+  <!-- IMAGE PLACEHOLDER: Add background image for Shorts section in juniors.css .third class -->
+  <section class="section third" data-page="juniors-shorts.html">Shorts</section>
+  
+  <!-- IMAGE PLACEHOLDER: Add background image for Sneakers section in juniors.css .fourth class -->
+  <section class="section fourth" data-page="juniors-sneakers.html">Sneakers</section>
+
+  <!-- Login / Signup Modal -->
+  <div class="login-wrapper" id="loginWrapper">
+    <div class="login-container" id="loginContainer">
+      <span class="close-login" id="closeLogin">&times;</span>
+
+      <!-- Left Image -->
+      <div class="login-left">
+        <img src="../images/cont.png" alt="Login Image" />
+      </div>
+
+      <!-- Right Form Area -->
+      <div class="login-right">
+        <div class="flip-card" id="flipCard">
+          
+          <!-- FRONT: LOGIN FORM -->
+          <div class="card-face card-front">
+            <h1 class="login-title">Welcome back</h1>
+            <p class="login-subtitle">
+              Sign in to access your account and continue your style journey
+            </p>
+
+            <form>
+              <label class="form-label" for="email">Email address</label>
+              <input id="email" type="email" class="form-input" placeholder="your@email.com" required />
+
+              <label class="form-label" for="password">Password</label>
+              <div class="password-container">
+                <input id="password" type="password" placeholder="Enter your password" />
+                <span id="togglePassword" class="password-toggle" role="button" tabindex="0">
+                  <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                  <svg id="eyeSlashIcon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24" style="display: none;">
+                    <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.14 21.14 0 0 1 5.06-6.34" />
+                    <path d="M1 1l22 22" />
+                  </svg>
+                </span>
+              </div>
+
+              <button type="submit" class="login-btn">SIGN IN</button>
+              <a href="#" class="forgot-password">Forgot your password?</a>
+              <div class="divider">or</div>
+              <button type="button" class="signup-btn" id="toSignup">CREATE ACCOUNT</button>
+            </form>
+          </div>
+
+          <!-- BACK: SIGNUP FORM -->
+          <div class="card-face card-back">
+            <h1 class="login-title">Create Account</h1>
+            <p class="login-subtitle">Join us and start your fashion journey</p>
+
+            <form>
+              <label class="form-label" for="signupName">Full Name</label>
+              <input id="signupName" type="text" class="form-input" placeholder="Your Name" required />
+
+              <label class="form-label" for="signupEmail">Email address</label>
+              <input id="signupEmail" type="email" class="form-input" placeholder="Your Email" required />
+
+              <label class="form-label" for="signupPassword">Password</label>
+              <input id="signupPassword" type="password" class="form-input" placeholder="Create Password" required />
+
+              <label class="form-label" for="confirmPassword">Re-enter Password</label>
+              <input id="confirmPassword" type="password" class="form-input" placeholder="Re-enter Password" required />
+
+              <button type="submit" class="login-btn">CREATE ACCOUNT</button>
+              <div class="divider">or</div>
+              <button type="button" class="signup-btn" id="toLogin">Back to Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Observer.min.js"></script>
+  <script src="../products.js"></script>
+  <script src="../search.js"></script>
+  <script src="juniors.js"></script>
+  <script src="../cart.js"></script>
+
+  <script>
+(() => {
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = gsap.utils.toArray('section.section');
+    const total = sections.length;
+    let current = 0;
+    let isAnimating = false;
+
+    function slideTo(newIndex) {
+      if (isAnimating) return;
+
+      newIndex = (newIndex + total) % total;
+      if (newIndex === current) return;
+
+      isAnimating = true;
+
+      const currentSection = sections[current];
+      const nextSection = sections[newIndex];
+
+      const direction = newIndex > current || (current === total - 1 && newIndex === 0) ? -1 : 1;
+
+      gsap.set(nextSection, {
+        yPercent: 100 * -direction,
+        opacity: 1,
+        zIndex: 2,
+        pointerEvents: 'auto',
+      });
+
+      const tl = gsap.timeline({
+        onComplete: () => {
+          gsap.set(currentSection, {
+            yPercent: 100 * direction,
+            opacity: 0,
+            zIndex: 0,
+            pointerEvents: 'none',
+          });
+          gsap.set(nextSection, {
+            yPercent: 0,
+            zIndex: 1,
+          });
+
+          current = newIndex;
+          isAnimating = false;
+          updateActiveClass();
+        },
+      });
+
+      tl.to(currentSection, {
+        yPercent: 100 * direction,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power2.inOut',
+      }, 0).to(nextSection, {
+        yPercent: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: 'power2.inOut',
+      }, 0);
+    }
+
+    function updateActiveClass() {
+      sections.forEach((section, i) => {
+        section.classList.toggle('active', i === current);
+      });
+    }
+
+    if (sections.length > 0) {
+      gsap.set(sections, { yPercent: 100, opacity: 0, pointerEvents: 'none' });
+      gsap.set(sections[0], { yPercent: 0, opacity: 1, zIndex: 1, pointerEvents: 'auto' });
+      updateActiveClass();
+
+      Observer.create({
+        target: window,
+        type: 'wheel,touch,pointer',
+        onUp: () => slideTo(current - 1),
+        onDown: () => slideTo(current + 1),
+        tolerance: 10,
+        preventDefault: true,
+      });
+
+      sections.forEach(section => {
+        section.addEventListener('click', () => {
+          const page = section.dataset.page;
+          if (page) window.location.href = page;
+        });
+      });
+    }
+
+    const menuToggle = document.getElementById('menuToggle');
+    const fullMenu = document.getElementById('fullMenu');
+    const closeMenu = document.getElementById('closeMenu');
+
+    if (menuToggle && fullMenu && closeMenu) {
+      menuToggle.addEventListener('click', () => fullMenu.classList.add('open'));
+      closeMenu.addEventListener('click', () => fullMenu.classList.remove('open'));
+
+      document.addEventListener('click', e => {
+        if (!fullMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+          fullMenu.classList.remove('open');
+        }
+      });
+    }
+
+    const searchIcon = document.getElementById('searchIcon');
+    const searchInput = document.getElementById('searchInput');
+    const searchWrapper = document.getElementById('searchWrapper');
+
+    if (searchIcon && searchInput && searchWrapper) {
+      searchIcon.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        searchWrapper.classList.toggle('active');
+        if (searchWrapper.classList.contains('active')) {
+          searchInput.focus();
+        }
+      });
+
+      searchWrapper.addEventListener('click', e => e.stopPropagation());
+
+      document.addEventListener('click', e => {
+        if (!searchWrapper.contains(e.target)) {
+          searchWrapper.classList.remove('active');
+        }
+      });
+    }
+
+    const loginWrapper = document.getElementById('loginWrapper');
+    const loginBtn = document.getElementById('loginBtn');
+    const closeLogin = document.getElementById('closeLogin');
+    const flipCard = document.getElementById('flipCard');
+    const toSignupBtn = document.getElementById('toSignup');
+    const toLoginBtn = document.getElementById('toLogin');
+
+    if (loginWrapper && loginBtn && closeLogin && flipCard && toSignupBtn && toLoginBtn) {
+      loginBtn.addEventListener('click', () => {
+        loginWrapper.classList.add('active');
+        flipCard.classList.remove('flipped');
+      });
+
+      closeLogin.addEventListener('click', () => {
+        loginWrapper.classList.remove('active');
+      });
+
+      loginWrapper.addEventListener('click', (e) => {
+        if (e.target === loginWrapper) {
+          loginWrapper.classList.remove('active');
+        }
+      });
+
+      toSignupBtn.addEventListener('click', () => {
+        flipCard.classList.add('flipped');
+      });
+
+      toLoginBtn.addEventListener('click', () => {
+        flipCard.classList.remove('flipped');
+      });
+    }
+
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+    const eyeIcon = document.getElementById('eyeIcon');
+    const eyeSlashIcon = document.getElementById('eyeSlashIcon');
+
+    if (togglePassword && passwordInput && eyeIcon && eyeSlashIcon) {
+      togglePassword.addEventListener('click', () => {
+        const isPassword = passwordInput.type === 'password';
+        passwordInput.type = isPassword ? 'text' : 'password';
+        eyeIcon.style.display = isPassword ? 'none' : 'block';
+        eyeSlashIcon.style.display = isPassword ? 'block' : 'none';
+      });
+
+      togglePassword.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          togglePassword.click();
+        }
+      });
+    }
+
+  });
+})();
+
+  </script>
+</body>
+</html>
