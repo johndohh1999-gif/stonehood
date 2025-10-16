@@ -275,7 +275,7 @@ window.allProducts = [
     category: "Women",
     subcategory: "Tops",
     image: "images/products/blackhoodie.png",
-    url: "women/women-tops.html",
+    url: "women/women-shirts.html",
     keywords: ["hoodie", "essential", "black", "cotton", "women"]
   },
   {
@@ -286,7 +286,7 @@ window.allProducts = [
     category: "Women",
     subcategory: "Tops",
     image: "images/products/oceanblue.png",
-    url: "women/women-tops.html",
+    url: "women/women-shirts.html",
     keywords: ["hoodie", "ocean", "wave", "blue", "women"]
   },
   {
@@ -298,7 +298,7 @@ window.allProducts = [
     category: "Women",
     subcategory: "Tops",
     image: "images/products/forestgreen.png",
-    url: "women/women-tops.html",
+    url: "women/women-shirts.html",
     keywords: ["hoodie", "forest", "explorer", "green", "women"]
   },
   {
@@ -309,7 +309,7 @@ window.allProducts = [
     category: "Women",
     subcategory: "Tops",
     image: "images/products/deepred.png",
-    url: "women/women-tops.html",
+    url: "women/women-shirts.html",
     keywords: ["hoodie", "burgundy", "red", "limited", "women"]
   },
   {
@@ -321,7 +321,7 @@ window.allProducts = [
     category: "Women",
     subcategory: "Tops",
     image: "images/products/heathergrey.png",
-    url: "women/women-tops.html",
+    url: "women/women-shirts.html",
     keywords: ["hoodie", "classic", "comfort", "grey", "women"]
   },
   {
@@ -332,7 +332,7 @@ window.allProducts = [
     category: "Women",
     subcategory: "Tops",
     image: "images/products/navyblue.png",
-    url: "women/women-tops.html",
+    url: "women/women-shirts.html",
     keywords: ["hoodie", "navy", "blue", "essential", "women"]
   },
   {
@@ -341,9 +341,9 @@ window.allProducts = [
     description: "Genuine leather jacket with premium finish",
     price: "Rs.45,000.00",
     category: "Women",
-    subcategory: "Dresses",
+    subcategory: "Jeans & Trousers",
     image: "images/products/blackjacket.png",
-    url: "women/women-dresses.html",
+    url: "women/women-jeans&trousers.html",
     keywords: ["jacket", "leather", "classic", "black", "women"]
   },
   {
@@ -352,9 +352,9 @@ window.allProducts = [
     description: "Classic denim jacket with distressed finish",
     price: "Rs.28,000.00",
     category: "Women",
-    subcategory: "Dresses",
+    subcategory: "Jeans & Trousers",
     image: "images/products/bluedenim.png",
-    url: "women/women-dresses.html",
+    url: "women/women-jeans&trousers.html",
     keywords: ["jacket", "denim", "vintage", "blue", "women"]
   },
   {
@@ -363,9 +363,9 @@ window.allProducts = [
     description: "Premium fur-lined jacket for cold weather",
     price: "Rs.55,000.00",
     category: "Women",
-    subcategory: "Dresses",
+    subcategory: "Jeans & Trousers",
     image: "images/products/furbrown.jpg",
-    url: "women/women-dresses.html",
+    url: "women/women-jeans&trousers.html",
     keywords: ["jacket", "fur", "luxury", "winter", "women"]
   },
   {
@@ -374,9 +374,9 @@ window.allProducts = [
     description: "Stylish synthetic leather jacket",
     price: "Rs.32,000.00",
     category: "Women",
-    subcategory: "Dresses",
+    subcategory: "Jeans & Trousers",
     image: "images/products/brownjacket.png",
-    url: "women/women-dresses.html",
+    url: "women/women-jeans&trousers.html",
     keywords: ["jacket", "raxine", "modern", "brown", "women"]
   },
   {
@@ -385,9 +385,9 @@ window.allProducts = [
     description: "Classic bomber style leather jacket",
     price: "Rs.48,000.00",
     category: "Women",
-    subcategory: "Dresses",
+    subcategory: "Jeans & Trousers",
     image: "images/products/bomberblack.png",
-    url: "women/women-dresses.html",
+    url: "women/women-jeans&trousers.html",
     keywords: ["jacket", "bomber", "leather", "black", "women"]
   },
   {
@@ -396,9 +396,9 @@ window.allProducts = [
     description: "Distressed denim jacket with vintage appeal",
     price: "Rs.26,000.00",
     category: "Women",
-    subcategory: "Dresses",
+    subcategory: "Jeans & Trousers",
     image: "images/products/distressblue.jpg",
-    url: "women/women-dresses.html",
+    url: "women/women-jeans&trousers.html",
     keywords: ["jacket", "denim", "distressed", "blue", "women"]
   },
   {

@@ -28,8 +28,8 @@ Stonehood is a modern streetwear e-commerce website built with HTML, CSS, and Ja
 │   └── men.js
 ├── /women                  # Women's product pages
 │   ├── women.html
-│   ├── women-tops.html
-│   ├── women-dresses.html
+│   ├── women-shirts.html
+│   ├── women-jeans&trousers.html
 │   ├── women-outerwear.html
 │   ├── women-footwear.html
 │   ├── women.css

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Women's Dresses Collection</title>
+    <title>Women's Jeans & Trousers Collection</title>
     <style>
         * {
             margin: 0;
@@ -278,7 +278,7 @@
             overflow: hidden;
         }
 
-        .jacket-display {
+        .jeans-display {
             width: 240px;
             height: 300px;
             border-radius: 12px;
@@ -295,7 +295,7 @@
             background-position: center;
         }
 
-        .product-card:hover .jacket-display {
+        .product-card:hover .jeans-display {
             transform: scale(1.03);
         }
 
@@ -504,7 +504,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1 class="title">Women's Jeans Collection</h1>
+            <h1 class="title">Women's Jeans & Trousers Collection</h1>
             <div class="filter-sort">
                 <button class="filter-btn" onclick="toggleFilter()">
                     <span>FILTER & SORT</span>
@@ -619,7 +619,7 @@
             <div class="product-card" data-category="leather" data-price="45000" data-name="The Classic Leather">
                 <div class="discount-badge">40% OFF</div>
                 <div class="product-image" style="background: linear-gradient(135deg, #2c2c2c, #1a1a1a);">
-                    <div class="jacket-display" style="background: linear-gradient(135deg, #8b4513, #654321);">
+                    <div class="jeans-display" style="background: linear-gradient(135deg, #8b4513, #654321);">
                         <div class="material-tag">LEATHER</div>
                         <img id="skinny-jeans-image" src="../images/products/jeansblack.png" alt="Classic Skinny Jeans" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
                     </div>
@@ -644,10 +644,10 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #000000;" onclick="changeJacketImage('skinny-jeans-image', '../images/products/jeansblack.png', this)"></div>
-                            <div class="color-dot" style="background-color: #797880;" onclick="changeJacketImage('skinny-jeans-image', '../images/products/jeansgrey.png', this)"></div>
-                            <div class="color-dot" style="background-color: #311fd8;" onclick="changeJacketImage('skinny-jeans-image', '../images/products/jeansblue.png', this)"></div>
-                            <div class="color-dot" style="background-color: #ddccbc;" onclick="changeJacketImage('skinny-jeans-image', '../images/products/jeanscream.png', this)"></div>
+                            <div class="color-dot active" style="background-color: #000000;" onclick="changeJeansImage('skinny-jeans-image', '../images/products/jeansblack.png', this)"></div>
+                            <div class="color-dot" style="background-color: #797880;" onclick="changeJeansImage('skinny-jeans-image', '../images/products/jeansgrey.png', this)"></div>
+                            <div class="color-dot" style="background-color: #311fd8;" onclick="changeJeansImage('skinny-jeans-image', '../images/products/jeansblue.png', this)"></div>
+                            <div class="color-dot" style="background-color: #ddccbc;" onclick="changeJeansImage('skinny-jeans-image', '../images/products/jeanscream.png', this)"></div>
                             <span class="more-colors">+2 →</span>
                         </div>
                     </div>
@@ -658,11 +658,11 @@
                 </div>
             </div>
 
-            <!-- Product 2 - Denim Jacket -->
+            <!-- Product 2 - Wide Leg Jeans -->
             <div class="product-card" data-category="denim" data-price="18000" data-name="The Vintage Denim">
                 <div class="discount-badge new-badge">NEW</div>
                 <div class="product-image" style="background: linear-gradient(135deg, #4682b4, #5f9ea0);">
-                    <div class="jacket-display" style="background: linear-gradient(135deg, #4169e1, #1e90ff);">
+                    <div class="jeans-display" style="background: linear-gradient(135deg, #4169e1, #1e90ff);">
                         <div class="material-tag">DENIM</div>
                         <img id="denim-vintage-image" src="../images/products/bluevintage.png" alt="Vintage Denim Jacket" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
                     </div>
@@ -685,9 +685,9 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #4169e1;" onclick="changeJacketImage('denim-vintage-image', '../images/products/bluedistress.png', this)"></div>
-                            <div class="color-dot" style="background-color: #2f4f4f;" onclick="changeJacketImage('denim-vintage-image', '../images/products/darkvintage.png', this)"></div>
-                            <div class="color-dot" style="background-color: #87ceeb;" onclick="changeJacketImage('denim-vintage-image', '../images/products/lightvintage.png', this)"></div>
+                            <div class="color-dot active" style="background-color: #4169e1;" onclick="changeJeansImage('denim-vintage-image', '../images/products/bluedistress.png', this)"></div>
+                            <div class="color-dot" style="background-color: #2f4f4f;" onclick="changeJeansImage('denim-vintage-image', '../images/products/darkvintage.png', this)"></div>
+                            <div class="color-dot" style="background-color: #87ceeb;" onclick="changeJeansImage('denim-vintage-image', '../images/products/lightvintage.png', this)"></div>
                             <span class="more-colors">→</span>
                         </div>
                     </div>
@@ -698,11 +698,11 @@
                 </div>
             </div>
 
-            <!-- Product 3 - Fur Jacket -->
+            <!-- Product 3 - Fur Trimmed Trousers -->
             <div class="product-card" data-category="fur" data-price="65000" data-name="The Luxury Fur">
                 <div class="discount-badge limited-badge">LIMITED</div>
                 <div class="product-image" style="background: linear-gradient(135deg, #f5f5dc, #ddd);">
-                    <div class="jacket-display" style="background: linear-gradient(135deg, #8b7d6b, #a0522d);">
+                    <div class="jeans-display" style="background: linear-gradient(135deg, #8b7d6b, #a0522d);">
                         <div class="material-tag">FUR</div>
                         <img id="fur-luxury-image" src="../images/products/furbrown.jpg" alt="Luxury Fur Jacket" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
                     </div>
@@ -724,9 +724,9 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #8b7d6b;" onclick="changeJacketImage('fur-luxury-image', '../images/products/furbrown.jpg', this)"></div>
-                            <div class="color-dot" style="background-color: #2c2c2c;" onclick="changeJacketImage('fur-luxury-image', '../images/products/furblack.jpg', this)"></div>
-                            <div class="color-dot" style="background-color: #f5f5dc;" onclick="changeJacketImage('fur-luxury-image', '../images/products/furcream.jpg', this)"></div>
+                            <div class="color-dot active" style="background-color: #8b7d6b;" onclick="changeJeansImage('fur-luxury-image', '../images/products/furbrown.jpg', this)"></div>
+                            <div class="color-dot" style="background-color: #2c2c2c;" onclick="changeJeansImage('fur-luxury-image', '../images/products/furblack.jpg', this)"></div>
+                            <div class="color-dot" style="background-color: #f5f5dc;" onclick="changeJeansImage('fur-luxury-image', '../images/products/furcream.jpg', this)"></div>
                             <span class="more-colors">→</span>
                         </div>
                     </div>
@@ -737,11 +737,11 @@
                 </div>
             </div>
 
-            <!-- Product 4 - Raxine Jacket -->
+            <!-- Product 4 - Raxine Trousers -->
             <div class="product-card" data-category="raxine" data-price="21000" data-name="The Modern Raxine">
                 <div class="discount-badge">30% OFF</div>
                 <div class="product-image" style="background: linear-gradient(135deg, #2c2c2c, #1a1a1a);">
-                    <div class="jacket-display" style="background: linear-gradient(135deg, #36454f, #2f4f4f);">
+                    <div class="jeans-display" style="background: linear-gradient(135deg, #36454f, #2f4f4f);">
                         <div class="material-tag">RAXINE</div>
                         <img id="raxine-modern-image" src="../images/products/raxinegrey.jpg" alt="Modern Raxine Jacket" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
                     </div>
@@ -766,9 +766,9 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #36454f;" onclick="changeJacketImage('raxine-modern-image', '../images/products/raxinegrey.jpg', this)"></div>
-                            <div class="color-dot" style="background-color: #2c2c2c;" onclick="changeJacketImage('raxine-modern-image', '../images/products/raxineblack.jpg', this)"></div>
-                            <div class="color-dot" style="background-color: #8b4513;" onclick="changeJacketImage('raxine-modern-image', '../images/products/raxinebrown.jpg', this)"></div>
+                            <div class="color-dot active" style="background-color: #36454f;" onclick="changeJeansImage('raxine-modern-image', '../images/products/raxinegrey.jpg', this)"></div>
+                            <div class="color-dot" style="background-color: #2c2c2c;" onclick="changeJeansImage('raxine-modern-image', '../images/products/raxineblack.jpg', this)"></div>
+                            <div class="color-dot" style="background-color: #8b4513;" onclick="changeJeansImage('raxine-modern-image', '../images/products/raxinebrown.jpg', this)"></div>
                             <span class="more-colors">+1 →</span>
                         </div>
                     </div>
@@ -783,14 +783,14 @@
             <div class="product-card" data-category="leather" data-price="37500" data-name="The Bomber Leather">
                 <div class="discount-badge">25% OFF</div>
                 <div class="product-image" style="background: linear-gradient(135deg, #2c2c2c, #1a1a1a);">
-                    <div class="jacket-display" style="background: linear-gradient(135deg, #2c2c2c, #1a1a1a);">
+                    <div class="jeans-display" style="background: linear-gradient(135deg, #2c2c2c, #1a1a1a);">
                         <div class="material-tag">LEATHER</div>
                         <img id="leather-bomber-image" src="../images/products/bomberblack.png" alt="Leather Bomber Jacket" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
                     </div>
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">The Bomber Leather</h3>
-                    <p class="product-description">Sleek bomber style leather jacket with ribbed cuffs and waistband</p>
+                    <p class="product-description">Sleek bomber style leather trousers with ribbed cuffs and waistband</p>
                     <div class="product-price">
                         <span class="current-price">Rs.37,500.00</span>
                         <span class="original-price">Rs.50,000.00</span>
@@ -807,8 +807,8 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #2c2c2c;" onclick="changeJacketImage('leather-bomber-image', '../images/products/bomberblack.png', this)"></div>
-                            <div class="color-dot" style="background-color: #8b4513;" onclick="changeJacketImage('leather-bomber-image', '../images/products/bomberbrown.png', this)"></div>
+                            <div class="color-dot active" style="background-color: #2c2c2c;" onclick="changeJeansImage('leather-bomber-image', '../images/products/bomberblack.png', this)"></div>
+                            <div class="color-dot" style="background-color: #8b4513;" onclick="changeJeansImage('leather-bomber-image', '../images/products/bomberbrown.png', this)"></div>
                             <span class="more-colors">→</span>
                         </div>
                     </div>
@@ -822,7 +822,7 @@
             <!-- Product 6 - Distressed Denim -->
             <div class="product-card" data-category="denim" data-price="22000" data-name="The Distressed Denim">
                 <div class="product-image" style="background: linear-gradient(135deg, #4682b4, #5f9ea0);">
-                    <div class="jacket-display" style="background: linear-gradient(135deg, #6495ed, #4169e1);">
+                    <div class="jeans-display" style="background: linear-gradient(135deg, #6495ed, #4169e1);">
                         <div class="material-tag">DENIM</div>
                         <img id="denim-distressed-image" src="../images/products/distressblue.jpg" alt="Distressed Denim Jacket" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
                     </div>
@@ -845,8 +845,8 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #6495ed;" onclick="changeJacketImage('denim-distressed-image', '../images/products/distressblue.jpg', this)"></div>
-                            <div class="color-dot" style="background-color: #2f4f4f;" onclick="changeJacketImage('denim-distressed-image', '../images/products/distressblack.jpg', this)"></div>
+                            <div class="color-dot active" style="background-color: #6495ed;" onclick="changeJeansImage('denim-distressed-image', '../images/products/distressblue.jpg', this)"></div>
+                            <div class="color-dot" style="background-color: #2f4f4f;" onclick="changeJeansImage('denim-distressed-image', '../images/products/distressblack.jpg', this)"></div>
                             <span class="more-colors">+1 →</span>
                         </div>
                     </div>
@@ -1016,8 +1016,8 @@
             document.getElementById('productCount').textContent = `${count} PRODUCTS`;
         }
 
-        // Color change functionality - changes jacket image when color dot is clicked
-        function changeJacketImage(imageId, imageSrc, clickedDot) {
+        // Color change functionality - changes jeans image when color dot is clicked
+        function changeJeansImage(imageId, imageSrc, clickedDot) {
             // Change the image
             document.getElementById(imageId).src = imageSrc;
             
