@@ -70,6 +70,16 @@ Stonehood is a modern streetwear e-commerce website built with HTML, CSS, and Ja
 The server automatically starts via the configured workflow. The site is served on port 5000.
 
 ## Recent Changes
+- October 16, 2025: Fixed Women's section navigation and content accuracy
+  - Renamed women-dresses.html to women-jeans&trousers.html to better reflect actual content
+  - Updated all content references from "jackets/dresses" to "jeans/trousers"
+  - Fixed women-shirts.html title from "Men's Hoodies" to "Women's Shirts"
+  - Changed CSS class names (hoodie-display → shirt-display, jacket-display → jeans-display)
+  - Updated ALL navigation menus across site to use consistent "Shirts" terminology
+  - Fixed ALL product URLs in products.js to point to correct pages
+  - Eliminated all references to obsolete women-dresses.html and women-tops.html files
+  - Ensured terminology consistency across all navigation menus
+
 - September 30, 2025: Added complete Juniors section
   - Created juniors directory with main page (juniors.html) featuring vertical scroll navigation
   - Built 4 subcategory pages: T-Shirts, Hoodies, Shorts, and Sneakers
