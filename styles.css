@@ -110,7 +110,6 @@ header {
   transition: width 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
   white-space: nowrap;
 }
-
 .search-wrapper.active .nav-search-input {
   width: 500px;
   padding: 8px 12px;
