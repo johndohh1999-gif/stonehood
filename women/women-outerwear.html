@@ -69,7 +69,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1 class="title">Men's Shirts Collection</h1>
+            <h1 class="title">Women's Jackets Sweaters & Coats Collection</h1>
             <div class="filter-sort">
                 <button class="filter-btn" onclick="toggleFilter()">FILTER & SORT ⚙️</button>
                 <span class="product-count" id="productCount">6 PRODUCTS</span>
@@ -113,16 +113,16 @@
         </div>
 
         <div class="product-grid" id="productGrid">
-            <!-- Classic Formal Shirt -->
-            <div class="product-card" data-category="formal" data-price="3500" data-name="Classic Formal">
+            <!-- Premium Denim Jackets -->
+            <div class="product-card" data-category="denim" data-price="3500" data-name="Denim Jackets">
                 <div class="discount-badge bestseller-badge">BESTSELLER</div>
                 <div class="product-image">
-                    <div class="material-tag">COTTON</div>
-                    <img id="classic-formal-image" src="../images/products/whiteshirt.png" alt="Classic Formal Shirt">
+                    <div class="material-tag">DENIM</div>
+                    <img id="denim-jacket-image" src="../images/products/denimjacketwblue.png" alt="Denim Jacket">
                 </div>
                 <div class="product-info">
-                    <h3 class="product-name">Classic Formal</h3>
-                    <p class="product-description">Premium cotton formal shirt with French cuffs</p>
+                    <h3 class="product-name">Denim Jackets</h3>
+                    <p class="product-description">Premium Denim Jackets for Women</p>
                     <div class="product-price">
                         <span class="current-price">Rs.3,500.00</span>
                     </div>
@@ -138,11 +138,11 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #ffffff; border-color: #333;" onclick="changeShirtImage('classic-formal-image', '../images/products/whiteshirt.png', this)"></div>
-                            <div class="color-dot" style="background-color: #87ceeb;" onclick="changeShirtImage('classic-formal-image', '../images/products/blueshirt.png', this)"></div>
-                            <div class="color-dot" style="background-color: #ffc0cb;" onclick="changeShirtImage('classic-formal-image', '../images/products/pinkshirt.png', this)"></div>
-                            <div class="color-dot" style="background-color: #75797a;" onclick="changeShirtImage('classic-formal-image', '../images/products/greystriped.png', this)"></div>
-                            <div class="color-dot" style="background-color: #dda0dd;" onclick="changeShirtImage('classic-formal-image', '../images/products/purplestriped.png', this)"></div>
+                            <div class="color-dot active" style="background-color: #001B94; border-color: #333;" onclick="changeJacketImage('denim-jacket-image', '../images/products/denimjacketwbluepng', this)"></div>
+                            <div class="color-dot" style="background-color: #000000;" onclick="changJacketImage('denim-jacket-image', '../images/products/denimjacketwblack.png', this)"></div>
+                            <div class="color-dot" style="background-color: #778FA8;" onclick="changeJacketImage('denim-jacket-image', '../images/products/denimjacketwwash.png', this)"></div>
+                            <div class="color-dot" style="background-color: #778FA8;" onclick="changeJacketImage('denim-jacket-image', '../images/products/denimjacketwgrey.png', this)"></div>
+                            <div class="color-dot" style="background-color: #778FA8;" onclick="changeJacketImage('denim-jacket-image', '../images/products/denimjacketwsky.png', this)"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -152,16 +152,16 @@
                 </div>
             </div>
 
-            <!-- Check Casual Shirt -->
-            <div class="product-card" data-category="casual" data-price="2800" data-name="Check Casual">
+            <!-- Non Denim Jackets-->
+            <div class="product-card" data-category="non denim" data-price="2800" data-name="Non Denim Jackets">
                 <div class="discount-badge">25% OFF</div>
                 <div class="product-image">
-                    <div class="material-tag">FLANNEL</div>
-                    <img id="check-casual-image" src="../images/products/checkblue.png" alt="Check Casual Shirt">
+                    <div class="material-tag">NON DENIM</div>
+                    <img id="non-denim-jacket-image" src="../images/products/nondenimwbrown.png" alt="Non Denim Jacket">
                 </div>
                 <div class="product-info">
-                    <h3 class="product-name">Check Casual</h3>
-                    <p class="product-description">Comfortable flannel check shirt for weekends</p>
+                    <h3 class="product-name">Non Denim Jackets</h3>
+                    <p class="product-description">Classic Non Denim Jackets</p>
                     <div class="product-price">
                         <span class="current-price">Rs.2,800.00</span>
                         <span class="original-price">Rs.3,600.00</span>
@@ -178,9 +178,9 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #2196f3;" onclick="changeShirtImage('check-casual-image', '../images/products/checkblue.png', this)"></div>
-                            <div class="color-dot" style="background-color: #4caf50;" onclick="changeShirtImage('check-casual-image', '../images/products/checkgreen.png', this)"></div>
-                            <div class="color-dot" style="background-color: #d32f2f;" onclick="changeShirtImage('check-casual-image', '../images/products/checkred.png', this)"></div>
+                            <div class="color-dot active" style="background-color: #2196f3;" onclick="changeJacketImage('check-casual-image', '../images/products/nondenimwbrown.png', this)"></div>
+                            <div class="color-dot" style="background-color: #4caf50;" onclick="changeJacketImage('check-casual-image', '../images/products/nondenimwbeige.png', this)"></div>
+                            <div class="color-dot" style="background-color: #e070ae;" onclick="changeJacketImage('check-casual-image', '../images/products/nondenimwlilac.png', this)"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -190,16 +190,16 @@
                 </div>
             </div>
 
-            <!-- Premium Polo Shirt -->
-            <div class="product-card" data-category="polo" data-price="4200" data-name="Premium Polo">
+            <!-- Notch Collar Long Coat -->
+            <div class="product-card" data-category="coat" data-price="4200" data-name="Long Coat">
                 <div class="discount-badge new-badge">NEW</div>
                 <div class="product-image">
-                    <div class="material-tag">PIQUE</div>
-                    <img id="premium-polo-image" src="../images/products/greenpolo.png" alt="Premium Polo Shirt">
+                    <div class="material-tag">Long Coat</div>
+                    <img id="long-coat-image" src="../images/products/coatwcamel.png" alt="Premium Polo Shirt">
                 </div>
                 <div class="product-info">
-                    <h3 class="product-name">Premium Polo</h3>
-                    <p class="product-description">Luxury pique cotton polo with contrast collar</p>
+                    <h3 class="product-name">Notch Collar Long Coats</h3>
+                    <p class="product-description">Elegant Notch Collar Long Coats for Women</p>
                     <div class="product-price">
                         <span class="current-price">Rs.4,200.00</span>
                     </div> 
@@ -215,10 +215,10 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #2e7d32;" onclick="changeShirtImage('premium-polo-image', '../images/products/greenpolo.png', this)"></div>
-                            <div class="color-dot" style="background-color: #1565c0;" onclick="changeShirtImage('premium-polo-image', '../images/products/bluepolo.png', this)"></div>
-                            <div class="color-dot" style="background-color: #424242;" onclick="changeShirtImage('premium-polo-image', '../images/products/blackpolo.png', this)"></div>
-                            <div class="color-dot" style="background-color: #ffffff; border-color: #333;" onclick="changeShirtImage('premium-polo-image', '../images/products/whitepolo.png', this)"></div>
+                            <div class="color-dot active" style="background-color: #C19A6B;" onclick="changeCoatImage('premium-polo-image', '../images/products/coatwcamel.png', this)"></div>
+                            <div class="color-dot" style="background-color: #808080;" onclick="changeLongCoatImage('premium-polo-image', '../images/products/coatwgrey.png', this)"></div>
+                            <div class="color-dot" style="background-color: #800000#424242;" onclick="changeLongCoatImage('premium-polo-image', '../images/products/coatwmaroon.png', this)"></div>
+                            <div class="color-dot" style="background-color: #FFFDD0; border-color: #333;" onclick="changeLongCoatImage('premium-polo-image', '../images/products/coatwcream.png', this)"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
