@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Men's Shirts Collection</title>
+    <title>Women's Outerwear Collection</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: system-ui, sans-serif; background: #f8f8f8; color: #333; }
@@ -77,11 +77,13 @@
         </div>
 
         <div class="category-filters">
-            <button class="category-btn active" onclick="filterByCategory('all', this)">All Shirts</button>
-            <button class="category-btn" onclick="filterByCategory('formal', this)">Formal</button>
-            <button class="category-btn" onclick="filterByCategory('casual', this)">Casual</button>
-            <button class="category-btn" onclick="filterByCategory('polo', this)">Polo</button>
-            <button class="category-btn" onclick="filterByCategory('henley', this)">Henley</button>
+            <button class="category-btn active" onclick="filterByCategory('all', this)">All Outerwear</button>
+            <button class="category-btn" onclick="filterByCategory('denim', this)">Denim Jackets</button>
+            <button class="category-btn" onclick="filterByCategory('non denim', this)">Non-Denim Jackets</button>
+            <button class="category-btn" onclick="filterByCategory('coat', this)">Coats</button>
+            <button class="category-btn" onclick="filterByCategory('striped', this)">Striped Sweaters</button>
+            <button class="category-btn" onclick="filterByCategory('sweater', this)">Knitted Sweaters</button>
+            <button class="category-btn" onclick="filterByCategory('basic', this)">Mock Neck</button>
         </div>
 
         <div class="filter-modal" id="filterModal">
@@ -138,11 +140,11 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #001B94; border-color: #333;" onclick="changeJacketImage('denim-jacket-image', '../images/products/denimjacketwbluepng', this)"></div>
-                            <div class="color-dot" style="background-color: #000000;" onclick="changJacketImage('denim-jacket-image', '../images/products/denimjacketwblack.png', this)"></div>
-                            <div class="color-dot" style="background-color: #778FA8;" onclick="changeJacketImage('denim-jacket-image', '../images/products/denimjacketwwash.png', this)"></div>
-                            <div class="color-dot" style="background-color: #778FA8;" onclick="changeJacketImage('denim-jacket-image', '../images/products/denimjacketwgrey.png', this)"></div>
-                            <div class="color-dot" style="background-color: #778FA8;" onclick="changeJacketImage('denim-jacket-image', '../images/products/denimjacketwsky.png', this)"></div>
+                            <div class="color-dot active" style="background-color: #001B94; border-color: #333;" onclick="changeOuterwearImage('denim-jacket-image', '../images/products/denimjacketwblue.png', this)"></div>
+                            <div class="color-dot" style="background-color: #000000;" onclick="changeOuterwearImage('denim-jacket-image', '../images/products/denimjacketwblack.png', this)"></div>
+                            <div class="color-dot" style="background-color: #778FA8;" onclick="changeOuterwearImage('denim-jacket-image', '../images/products/denimjacketwwash.png', this)"></div>
+                            <div class="color-dot" style="background-color: #8B8589;" onclick="changeOuterwearImage('denim-jacket-image', '../images/products/denimjacketwgrey.png', this)"></div>
+                            <div class="color-dot" style="background-color: #87CEEB;" onclick="changeOuterwearImage('denim-jacket-image', '../images/products/denimjacketwsky.png', this)"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -178,9 +180,9 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #2196f3;" onclick="changeJacketImage('check-casual-image', '../images/products/nondenimwbrown.png', this)"></div>
-                            <div class="color-dot" style="background-color: #4caf50;" onclick="changeJacketImage('check-casual-image', '../images/products/nondenimwbeige.png', this)"></div>
-                            <div class="color-dot" style="background-color: #e070ae;" onclick="changeJacketImage('check-casual-image', '../images/products/nondenimwlilac.png', this)"></div>
+                            <div class="color-dot active" style="background-color: #8B4513;" onclick="changeOuterwearImage('non-denim-jacket-image', '../images/products/nondenimwbrown.png', this)"></div>
+                            <div class="color-dot" style="background-color: #F5F5DC; border-color: #333;" onclick="changeOuterwearImage('non-denim-jacket-image', '../images/products/nondenimwbeige.png', this)"></div>
+                            <div class="color-dot" style="background-color: #C8A2C8;" onclick="changeOuterwearImage('non-denim-jacket-image', '../images/products/nondenimwlilac.png', this)"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -215,10 +217,10 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #C19A6B;" onclick="changeCoatImage('premium-polo-image', '../images/products/coatwcamel.png', this)"></div>
-                            <div class="color-dot" style="background-color: #808080;" onclick="changeLongCoatImage('premium-polo-image', '../images/products/coatwgrey.png', this)"></div>
-                            <div class="color-dot" style="background-color: #800000#424242;" onclick="changeLongCoatImage('premium-polo-image', '../images/products/coatwmaroon.png', this)"></div>
-                            <div class="color-dot" style="background-color: #FFFDD0; border-color: #333;" onclick="changeLongCoatImage('premium-polo-image', '../images/products/coatwcream.png', this)"></div>
+                            <div class="color-dot active" style="background-color: #C19A6B;" onclick="changeOuterwearImage('long-coat-image', '../images/products/coatwcamel.png', this)"></div>
+                            <div class="color-dot" style="background-color: #808080;" onclick="changeOuterwearImage('long-coat-image', '../images/products/coatwgrey.png', this)"></div>
+                            <div class="color-dot" style="background-color: #800000;" onclick="changeOuterwearImage('long-coat-image', '../images/products/coatwmaroon.png', this)"></div>
+                            <div class="color-dot" style="background-color: #FFFDD0; border-color: #333;" onclick="changeOuterwearImage('long-coat-image', '../images/products/coatwcream.png', this)"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -233,7 +235,7 @@
                 <div class="discount-badge">35% OFF</div>
                 <div class="product-image">
                     <div class="material-tag">Sweater</div>
-                    <img id="classic-henley-image" src="../images/products/stripedsweaternb.png" alt="Classic Henley Shirt">
+                    <img id="striped-sweater-image" src="../images/products/stripedsweaternb.png" alt="Striped Sailor Collar Sweater">
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Striped Sailor Collar Sweater</h3>
@@ -254,11 +256,11 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #000080;" onclick="changeShirtImage('classic-henley-image', '../images/products/stripedsweaternb.png', this)"></div>
-                            <div class="color-dot" style="background-color: #2c0909; border-color: #333;" onclick="changeShirtImage('classic-henley-image', '../images/products/stripedsweaterbg.png', this)"></div>
-                            <div class="color-dot" style="background-color: #36454F;" onclick="changeShirtImage('classic-henley-image', '../images/products/stripedsweatercr.png', this)"></div>
-                            <div class="color-dot" style="background-color: #808000;" onclick="changeShirtImage('classic-henley-image', '../images/products/stripedsweaterom.png', this)"></div>
-                            <div class="color-dot" style="background-color: #000000;" onclick="changeShirtImage('classic-henley-image', '../images/products/stripedsweaterbw.png', this)"></div>
+                            <div class="color-dot active" style="background-color: #000080;" onclick="changeOuterwearImage('striped-sweater-image', '../images/products/stripedsweaternb.png', this)"></div>
+                            <div class="color-dot" style="background-color: #8B4513; border-color: #333;" onclick="changeOuterwearImage('striped-sweater-image', '../images/products/stripedsweaterbg.png', this)"></div>
+                            <div class="color-dot" style="background-color: #DC143C;" onclick="changeOuterwearImage('striped-sweater-image', '../images/products/stripedsweatercr.png', this)"></div>
+                            <div class="color-dot" style="background-color: #FFA500;" onclick="changeOuterwearImage('striped-sweater-image', '../images/products/stripedsweaterom.png', this)"></div>
+                            <div class="color-dot" style="background-color: #000000;" onclick="changeOuterwearImage('striped-sweater-image', '../images/products/stripedsweaterbw.png', this)"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -272,7 +274,7 @@
             <div class="product-card" data-category="sweater" data-price="4800" data-name="Knitted Sweater">
                 <div class="product-image">
                     <div class="material-tag">PREMIUM</div>
-                    <img id="business-formal-image" src="../images/products/knittedsweaterog.png" alt="Business Formal Shirt">
+                    <img id="knitted-sweater-image" src="../images/products/knittedsweaterog.png" alt="Knitted Sweater">
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Knitted Sweater</h3>
@@ -292,9 +294,9 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #808000;" onclick="changeShirtImage('business-formal-image', '../images/products/knittedsweaterog.png', this)"></div>
-                            <div class="color-dot" style="background-color: #800000;" onclick="changeShirtImage('business-formal-image', '../images/products/knittedsweaterm.png', this)"></div>
-                            <div class="color-dot" style="background-color: #F5F5DC; border-color: #333;" onclick="changeShirtImage('business-formal-image', '../images/products/knittedsweaterb.png', this)"></div>
+                            <div class="color-dot active" style="background-color: #808000;" onclick="changeOuterwearImage('knitted-sweater-image', '../images/products/knittedsweaterog.png', this)"></div>
+                            <div class="color-dot" style="background-color: #800000;" onclick="changeOuterwearImage('knitted-sweater-image', '../images/products/knittedsweaterm.png', this)"></div>
+                            <div class="color-dot" style="background-color: #F5F5DC; border-color: #333;" onclick="changeOuterwearImage('knitted-sweater-image', '../images/products/knittedsweaterb.png', this)"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -308,7 +310,7 @@
             <div class="product-card" data-category="basic" data-price="3800" data-name="Mock Neck Sweater">
                 <div class="product-image">
                     <div class="material-tag">MOCK NECK</div>
-                    <img id="oxford-casual-image" src="../images/products/mocknecksweaterc.png" alt="Mock Neck Sweater">
+                    <img id="mockneck-sweater-image" src="../images/products/mocknecksweaterc.png" alt="Mock Neck Sweater">
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Mock Neck Sweater</h3>
@@ -328,10 +330,10 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #36454F;" onclick="changeShirtImage('oxford-casual-image', '../images/products/mocknecksweaterc.png', this)"></div>
-                            <div class="color-dot" style="background-color: #36454F; border-color: #333;" onclick="changeShirtImage('oxford-casual-image', '../images/products/mocknecksweaterg.png', this)"></div>
-                            <div class="color-dot" style="background-color: #87CEEB;" onclick="changeShirtImage('oxford-casual-image', '../images/products/mocknecksweaters.png', this)"></div>
-                            <div class="color-dot" style="background-color: #36454F;" onclick="changeShirtImage('oxford-casual-image', '../images/products/mocknecksweaterp.png', this)"></div>
+                            <div class="color-dot active" style="background-color: #36454F;" onclick="changeOuterwearImage('mockneck-sweater-image', '../images/products/mocknecksweaterc.png', this)"></div>
+                            <div class="color-dot" style="background-color: #808080; border-color: #333;" onclick="changeOuterwearImage('mockneck-sweater-image', '../images/products/mocknecksweaterg.png', this)"></div>
+                            <div class="color-dot" style="background-color: #87CEEB;" onclick="changeOuterwearImage('mockneck-sweater-image', '../images/products/mocknecksweaters.png', this)"></div>
+                            <div class="color-dot" style="background-color: #DDA0DD;" onclick="changeOuterwearImage('mockneck-sweater-image', '../images/products/mocknecksweaterp.png', this)"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -442,7 +444,7 @@
             alert(`Quick Buy: ${productName}\nPrice: ${price}\n\nRedirecting to checkout...`);
         }
 
-        function changeShirtImage(imgId, newSrc, clickedDot) {
+        function changeOuterwearImage(imgId, newSrc, clickedDot) {
             const imgElement = document.getElementById(imgId);
             if (imgElement) {
                 imgElement.src = newSrc;
