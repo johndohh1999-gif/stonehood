@@ -70,6 +70,18 @@ Stonehood is a modern streetwear e-commerce website built with HTML, CSS, and Ja
 The server automatically starts via the configured workflow. The site is served on port 5000.
 
 ## Recent Changes
+- October 21, 2025: Fixed Women's Outerwear page - Debug and corrections
+  - Fixed page title from "Men's Shirts Collection" to "Women's Outerwear Collection"
+  - Updated category filter buttons to match actual products (Denim Jackets, Non-Denim Jackets, Coats, Striped Sweaters, Knitted Sweaters, Mock Neck)
+  - Corrected all onclick handlers across 6 products (Denim Jackets, Non-Denim Jackets, Long Coat, Striped Sweater, Knitted Sweater, Mock Neck Sweater)
+  - Fixed typos in function names (changJacketImage → changeOuterwearImage)
+  - Fixed incorrect image IDs in onclick handlers to match actual img element IDs
+  - Corrected duplicate color codes (#800000#424242 → #800000)
+  - Updated image element IDs for consistency (classic-henley-image → striped-sweater-image, business-formal-image → knitted-sweater-image, oxford-casual-image → mockneck-sweater-image)
+  - Renamed JavaScript function from changeShirtImage to changeOuterwearImage
+  - Verified all 33 product images exist and load correctly
+  - Confirmed color dot functionality works - images change when clicking different colors
+
 - October 21, 2025: Completed Replit environment import and accessibility improvements
   - Successfully migrated project to Replit environment
   - Python 3.11 already installed (no additional packages required)
