@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Men's Footwear Collection</title>
+    <title>Women's Footwear Collection</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: system-ui, sans-serif; background: #f8f8f8; color: #333; }
@@ -78,9 +78,11 @@
         <div class="category-filters">
             <button class="category-btn active" onclick="filterByCategory('all', this)">All Footwear</button>
             <button class="category-btn" onclick="filterByCategory('sneakers', this)">Sneakers</button>
-            <button class="category-btn" onclick="filterByCategory('formal', this)">Formal</button>
             <button class="category-btn" onclick="filterByCategory('boots', this)">Boots</button>
-            <button class="category-btn" onclick="filterByCategory('casual', this)">Casual</button>
+            <button class="category-btn" onclick="filterByCategory('pumps', this)">Pumps</button>
+            <button class="category-btn" onclick="filterByCategory('mules', this)">Mules</button>
+            <button class="category-btn" onclick="filterByCategory('sandals', this)">Sandals</button>
+            <button class="category-btn" onclick="filterByCategory('flats', this)">Flats</button>
         </div>
 
         <div class="filter-modal" id="filterModal">
@@ -117,7 +119,7 @@
                 <div class="discount-badge bestseller-badge">BESTSELLER</div>
                 <div class="product-image">
                     <div class="material-tag">RETRO</div>
-                    <img id="athletic-sneakers-image" src="../images/products/womensneakerblue.png" alt="Athletic Sneakers">
+                    <img id="womensneaker-image" src="../images/products/womensneakerblue.png" alt="Women's Lace-up Sneakers">
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Lace-up Sneakers</h3>
@@ -128,18 +130,18 @@
                     <div class="size-selection">
                         <div class="size-label">Size (UK)</div>
                         <div class="size-options">
+                            <button class="size-btn">4</button>
+                            <button class="size-btn">5</button>
+                            <button class="size-btn selected">6</button>
                             <button class="size-btn">7</button>
                             <button class="size-btn">8</button>
-                            <button class="size-btn selected">9</button>
-                            <button class="size-btn">10</button>
-                            <button class="size-btn">11</button>
                         </div>
                     </div>
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #87CEEB; border-color: #333;" onclick="changeFootwearImage('athletic-sneakers-image', '../images/products/womensneakerblue.png', this)"></div>
-                            <div class="color-dot" style="background-color: #C0C0C0;" onclick="changeFootwearImage('athletic-sneakers-image', '../images/products/womensneakersilver.png', this)"></div>
+                            <div class="color-dot active" style="background-color: #87CEEB; border-color: #333;" onclick="changeFootwearImage('womensneaker-image', '../images/products/womensneakerblue.png', this)"></div>
+                            <div class="color-dot" style="background-color: #C0C0C0;" onclick="changeFootwearImage('womensneaker-image', '../images/products/womensneakersilver.png', this)"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -153,7 +155,7 @@
             <div class="product-card" data-category="boots" data-price="18500" data-name="Ankle Boots">
                 <div class="product-image">
                     <div class="material-tag">BOOTS</div>
-                    <img id="formal-oxfords-image" src="../images/products/womenanklebootscream.png" alt="Formal Oxford Shoes">
+                    <img id="womenanklebots-image" src="../images/products/womenanklebootscream.png" alt="Women's Ankle Boots">
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Ankle Boots</h3>
@@ -164,19 +166,19 @@
                     <div class="size-selection">
                         <div class="size-label">Size (UK)</div>
                         <div class="size-options">
+                            <button class="size-btn">4</button>
+                            <button class="size-btn">5</button>
+                            <button class="size-btn selected">6</button>
                             <button class="size-btn">7</button>
                             <button class="size-btn">8</button>
-                            <button class="size-btn selected">9</button>
-                            <button class="size-btn">10</button>
-                            <button class="size-btn">11</button>
                         </div>
                     </div>
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #FFFDD0;" onclick="changeFootwearImage('formal-oxfords-image', '../images/products/womenanklebootscream.png', this)"></div>
-                            <div class="color-dot" style="background-color: #000000;" onclick="changeFootwearImage('formal-oxfords-image', '../images/products/womenanklebootsblack.png', this)"></div>
-                            <div class="color-dot" style="background-color: #800000;" onclick="changeFootwearImage('formal-oxfords-image', '../images/products/womenanklebootsmaroon.png', this)"></div>
+                            <div class="color-dot active" style="background-color: #FFFDD0;" onclick="changeFootwearImage('womenanklebots-image', '../images/products/womenanklebootscream.png', this)"></div>
+                            <div class="color-dot" style="background-color: #000000;" onclick="changeFootwearImage('womenanklebots-image', '../images/products/womenanklebootsblack.png', this)"></div>
+                            <div class="color-dot" style="background-color: #800000;" onclick="changeFootwearImage('womenanklebots-image', '../images/products/womenanklebootsmaroon.png', this)"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -191,7 +193,7 @@
                 <div class="discount-badge new-badge">NEW</div>
                 <div class="product-image">
                     <div class="material-tag">VELVET</div>
-                    <img id="combat-boots-image" src="../images/products/velvetpumpsgreen.png" alt="Combat Boots">
+                    <img id="velvetpumps-image" src="../images/products/velvetpumpsgreen.png" alt="Velvet Pumps">
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Velvet Pumps</h3>
@@ -202,19 +204,19 @@
                     <div class="size-selection">
                         <div class="size-label">Size (UK)</div>
                         <div class="size-options">
+                            <button class="size-btn">4</button>
+                            <button class="size-btn">5</button>
+                            <button class="size-btn selected">6</button>
                             <button class="size-btn">7</button>
                             <button class="size-btn">8</button>
-                            <button class="size-btn selected">9</button>
-                            <button class="size-btn">10</button>
-                            <button class="size-btn">11</button>
                         </div>
                     </div>
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #154A3B;" onclick="changeFootwearImage('combat-boots-image', '../images/products/velvetpumpsgreen.png', this)"></div>
-                            <div class="color-dot" style="background-color: #722F37;" onclick="changeFootwearImage('combat-boots-image', '../images/products/velvetpumpsmaroon.png', this)"></div>
-                            <div class="color-dot" style="background-color: #5F00A7;" onclick="changeFootwearImage('combat-boots-image', '../images/products/velvetpumpspurple.png', this)"></div>
+                            <div class="color-dot active" style="background-color: #154A3B;" onclick="changeFootwearImage('velvetpumps-image', '../images/products/velvetpumpsgreen.png', this)"></div>
+                            <div class="color-dot" style="background-color: #722F37;" onclick="changeFootwearImage('velvetpumps-image', '../images/products/velvetpumpsmaroon.png', this)"></div>
+                            <div class="color-dot" style="background-color: #5F00A7;" onclick="changeFootwearImage('velvetpumps-image', '../images/products/velvetpumpspurple.png', this)"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -225,11 +227,11 @@
             </div>
 
             <!-- Buckled Mules -->
-            <div class="product-card" data-category="casual" data-price="8500" data-name="Canvas Casual">
+            <div class="product-card" data-category="mules" data-price="8500" data-name="Buckled Mules">
                 <div class="discount-badge">20% OFF</div>
                 <div class="product-image">
                     <div class="material-tag">MULES</div>
-                    <img id="canvas-casual-image" src="../images/products/womenmulesblack.png" alt="Canvas Casual Shoes">
+                    <img id="womenmules-image" src="../images/products/womenmulesblack.png" alt="Women's Buckled Mules">
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Buckled Mules</h3>
@@ -241,19 +243,19 @@
                     <div class="size-selection">
                         <div class="size-label">Size (UK)</div>
                         <div class="size-options">
+                            <button class="size-btn">4</button>
+                            <button class="size-btn">5</button>
+                            <button class="size-btn selected">6</button>
                             <button class="size-btn">7</button>
                             <button class="size-btn">8</button>
-                            <button class="size-btn selected">9</button>
-                            <button class="size-btn">10</button>
-                            <button class="size-btn">11</button>
                         </div>
                     </div>
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #000000;" onclick="changeFootwearImage('canvas-casual-image', '../images/products/womenmulesblack.png', this)"></div>
-                            <div class="color-dot" style="background-color: #ffffff; border-color: #333;" onclick="changeFootwearImage('canvas-casual-image', '../images/products/womenmuleswhite.png', this)"></div>
-                            <div class="color-dot" style="background-color: #624A2E;" onclick="changeFootwearImage('canvas-casual-image', '../images/products/womenmulesbrown.png', this)"></div>
+                            <div class="color-dot active" style="background-color: #000000;" onclick="changeFootwearImage('womenmules-image', '../images/products/womenmulesblack.png', this)"></div>
+                            <div class="color-dot" style="background-color: #ffffff; border-color: #333;" onclick="changeFootwearImage('womenmules-image', '../images/products/womenmuleswhite.png', this)"></div>
+                            <div class="color-dot" style="background-color: #624A2E;" onclick="changeFootwearImage('womenmules-image', '../images/products/womenmulesbrown.png', this)"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -264,10 +266,10 @@
             </div>
 
             <!-- Loop Sandals -->
-            <div class="product-card" data-category="formal" data-price="22000" data-name="Designer Loafers">
+            <div class="product-card" data-category="sandals" data-price="22000" data-name="Loop Sandals">
                 <div class="product-image">
                     <div class="material-tag">PREMIUM</div>
-                    <img id="designer-loafers-image" src="../images/products/loopsandalspink.png" alt="Designer Loafers">
+                    <img id="loopsandals-image" src="../images/products/loopsandalspink.png" alt="Loop Sandals">
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Loop Sandals</h3>
@@ -278,20 +280,19 @@
                     <div class="size-selection">
                         <div class="size-label">Size (UK)</div>
                         <div class="size-options">
+                            <button class="size-btn">4</button>
+                            <button class="size-btn">5</button>
+                            <button class="size-btn selected">6</button>
                             <button class="size-btn">7</button>
                             <button class="size-btn">8</button>
-                            <button class="size-btn selected">9</button>
-                            <button class="size-btn">10</button>
-                            <button class="size-btn">11</button>
                         </div>
                     </div>
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #C79F9F;" onclick="changeFootwearImage('designer-loafers-image', '../images/products/loopsandalspink.png', this)"></div>
-                            <div class="color-dot" style="background-color: #000000;" onclick="changeFootwearImage('designer-loafers-image', '../images/products/loopsandalspurple.png', this)"></div>
-                            <div class="color-dot" style="background-color: #D8BFD8;" onclick="changeFootwearImage('designer-loafers-image', '../images/products/loafersblack.png', this)"></div>
-                        </div>
+                            <div class="color-dot active" style="background-color: #C79F9F;" onclick="changeFootwearImage('loopsandals-image', '../images/products/loopsandalspink.png', this)"></div>
+                            <div class="color-dot" style="background-color: #5F00A7;" onclick="changeFootwearImage('loopsandals-image', '../images/products/loopsandalspurple.png', this)"></div>
+                            <div class="color-dot" style="background-color: #D8BFD8;" onclick="changeFootwearImage('loopsandals-image', '../images/products/loopsandalstaupe.png', this)"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -302,15 +303,15 @@
             </div>
 
             <!-- Espadrille Flats -->
-            <div class="product-card" data-category="sneakers" data-price="14200" data-name="Sports Trainers">
+            <div class="product-card" data-category="flats" data-price="14200" data-name="Espadrille Flats">
                 <div class="discount-badge">15% OFF</div>
                 <div class="product-image">
                     <div class="material-tag">FLATS</div>
-                    <img id="sports-trainers-image" src="../images/products/flatswomenpink.png" alt="Sports Trainers">
+                    <img id="flats-image" src="../images/products/flatswomenpink.png" alt="Espadrille Flats">
                 </div>
                 <div class="product-info">
-                    <h3 class="product-name">Sports Trainers</h3>
-                    <p class="product-description">Multi-sport training shoes with grip sole</p>
+                    <h3 class="product-name">Espadrille Flats</h3>
+                    <p class="product-description">Comfortable casual espadrille flats</p>
                     <div class="product-price">
                         <span class="current-price">Rs.14,200.00</span>
                         <span class="original-price">Rs.16,706.00</span>
@@ -318,19 +319,19 @@
                     <div class="size-selection">
                         <div class="size-label">Size (UK)</div>
                         <div class="size-options">
+                            <button class="size-btn">4</button>
+                            <button class="size-btn">5</button>
+                            <button class="size-btn selected">6</button>
                             <button class="size-btn">7</button>
                             <button class="size-btn">8</button>
-                            <button class="size-btn selected">9</button>
-                            <button class="size-btn">10</button>
-                            <button class="size-btn">11</button>
                         </div>
                     </div>
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #FFB6C1;" onclick="changeFootwearImage('sports-trainers-image', '../images/products/flatswomenpink.png', this)"></div>
-                            <div class="color-dot" style="background-color: #FFD700;" onclick="changeFootwearImage('sports-trainers-image', '../images/products/flatswomengold.png', this)"></div>
-                            <div class="color-dot" style="background-color: #F28500;" onclick="changeFootwearImage('sports-trainers-image', '../images/products/flatswomentangerine.png', this)"></div>
+                            <div class="color-dot active" style="background-color: #FFB6C1;" onclick="changeFootwearImage('flats-image', '../images/products/flatswomenpink.png', this)"></div>
+                            <div class="color-dot" style="background-color: #FFD700;" onclick="changeFootwearImage('flats-image', '../images/products/flatswomengold.png', this)"></div>
+                            <div class="color-dot" style="background-color: #F28500;" onclick="changeFootwearImage('flats-image', '../images/products/flatswomentangerine.png', this)"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -408,8 +409,6 @@
             document.getElementById('productCount').textContent = `${cards.length} PRODUCTS`;
             closeFilter();
         }
-
-        // Add to cart functionality is now handled by cart.js
 
         function quickBuy(productId) {
             const card = event.target.closest('.product-card');
