@@ -19,7 +19,19 @@
         .product-card:hover {transform: translateY(-4px);box-shadow: 0 8px 24px rgba(0,0,0,0.15);}
         .discount-badge {position: absolute;top: 15px;left: 15px;background: #e74c3c;color: white;padding: 6px 12px;border-radius: 4px;font-size: 12px;font-weight: 600;z-index: 2;}
         .new-badge {background: #27ae60;}
-        .product-image {width: 100%;height: 320px;background: #f0f0f0;display: flex;align-items: center;justify-content: center;position: relative;overflow: hidden;}
+        .product-image {width: 100%;height: 320px;background: #f0f0f0;display: flex;align-items: center;justify-content: center;position: relative;overflow: hidden;cursor: pointer;}
+        .image-modal {position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.9);z-index: 2000;display: none;align-items: center;justify-content: center;padding: 40px;}
+        .image-modal.active {display: flex;}
+        .image-modal-content {max-width: 50%;max-height: 50vh;position: relative;display: flex;align-items: center;justify-content: center;overflow: hidden;}
+        .image-modal-content img {max-width: 100%;max-height: 50vh;object-fit: contain;border-radius: 8px;transition: transform 0.3s ease;cursor: grab;}
+        .image-modal-content img.zoomed {cursor: move;}
+        .image-modal-close {position: absolute;top: -40px;right: -40px;background: none;border: none;color: white;font-size: 36px;cursor: pointer;font-weight: 300;}
+        .image-modal-close:hover {color: #e74c3c;}
+        .zoom-controls {position: absolute;bottom: 10px;left: 50%;transform: translateX(-50%);display: flex;gap: 10px;}
+        .zoom-btn {background: rgba(255,255,255,0.9);border: none;width: 40px;height: 40px;border-radius: 50%;cursor: pointer;font-size: 20px;font-weight: bold;display: flex;align-items: center;justify-content: center;transition: all 0.2s;}
+        .zoom-btn:hover {background: white;transform: scale(1.1);}
+        .zoom-reset {background: rgba(255,255,255,0.9);border: none;padding: 8px 16px;border-radius: 20px;cursor: pointer;font-size: 12px;font-weight: 600;}
+        .zoom-reset:hover {background: white;}
         .product-main-image {width: 100%;height: auto;object-fit: cover;}
         .product-info {padding: 20px;}
         .product-name {font-size: 16px;font-weight: 600;margin-bottom: 8px;color: #2c2c2c;text-transform: uppercase;letter-spacing: 0.5px;}
@@ -133,12 +145,14 @@
             </div>
         </div>
     </div>
+    <div class="image-modal" id="imageModal"><div class="image-modal-content"><button class="image-modal-close" onclick="closeImageModal()">&times;</button><img id="modalImage" src="" alt="Product Image"><div class="zoom-controls"><button class="zoom-btn" onclick="zoomOut()" title="Zoom Out">−</button><button class="zoom-reset" onclick="resetZoom()" title="Reset Zoom">Reset</button><button class="zoom-btn" onclick="zoomIn()" title="Zoom In">+</button></div></div></div>
     <script>
         function toggleFilter() { alert('Filter & Sort options would open here'); }
         document.querySelectorAll('.size-btn').forEach(btn => { btn.addEventListener('click', function() { const siblings = this.parentElement.querySelectorAll('.size-btn'); siblings.forEach(sibling => sibling.classList.remove('selected')); this.classList.add('selected'); }); });
         document.querySelectorAll('.color-dot').forEach(dot => { dot.addEventListener('click', function() { const siblings = this.parentElement.querySelectorAll('.color-dot'); siblings.forEach(sibling => sibling.classList.remove('active')); this.classList.add('active'); const newImageSrc = this.getAttribute('data-image'); const productCard = this.closest('.product-card'); const productImage = productCard.querySelector('.product-main-image'); if (productImage && newImageSrc) { productImage.src = newImageSrc; } }); });
         function quickBuy(productId, buttonElement = null) { const button = buttonElement || event.target; const card = button.closest('.product-card'); const productName = card.querySelector('.product-name').textContent; const price = card.querySelector('.current-price').textContent; const selectedSize = card.querySelector('.size-btn.selected')?.textContent || 'S'; alert(`Quick Buy: ${productName}\nSize: ${selectedSize}\nPrice: ${price}\n\nRedirecting to checkout...`); }
-        document.addEventListener('DOMContentLoaded', function() { const cards = document.querySelectorAll('.product-card'); cards.forEach((card, index) => { card.style.opacity = '0'; card.style.transform = 'translateY(20px)'; setTimeout(() => { card.style.transition = 'opacity 0.5s ease, transform 0.5s ease'; card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, index * 100); }); });
+        let zoomLevel=1,isDragging=false,startX,startY,translateX=0,translateY=0;function openImageModal(t){const e=document.getElementById("modalImage");e.src=t,document.getElementById("imageModal").classList.add("active"),document.body.style.overflow="hidden",resetZoom()}function closeImageModal(){document.getElementById("imageModal").classList.remove("active"),document.body.style.overflow="auto",resetZoom()}function zoomIn(){zoomLevel=Math.min(zoomLevel+.25,3),applyZoom()}function zoomOut(){zoomLevel=Math.max(zoomLevel-.25,.5),applyZoom()}function resetZoom(){zoomLevel=1,translateX=0,translateY=0,applyZoom()}function applyZoom(){const t=document.getElementById("modalImage");t.style.transform=`scale(${zoomLevel}) translate(${translateX}px, ${translateY}px)`,zoomLevel>1?t.classList.add("zoomed"):t.classList.remove("zoomed")}
+        document.addEventListener('DOMContentLoaded', function() { const modalImg=document.getElementById('modalImage'),cards=document.querySelectorAll('.product-card'); cards.forEach((card,index)=>{card.style.opacity='0';card.style.transform='translateY(20px)';setTimeout(()=>{card.style.transition='opacity 0.5s ease, transform 0.5s ease';card.style.opacity='1';card.style.transform='translateY(0)';},index*100);}); document.getElementById('imageModal').addEventListener('click',function(e){if(e.target===this)closeImageModal();}); document.querySelectorAll('.product-main-image').forEach(img=>{img.addEventListener('click',function(e){e.stopPropagation();openImageModal(this.src);});}); modalImg.addEventListener('wheel',function(e){e.preventDefault();e.deltaY<0?zoomIn():zoomOut();}); modalImg.addEventListener('mousedown',function(e){if(zoomLevel>1){isDragging=true;startX=e.clientX-translateX;startY=e.clientY-translateY;modalImg.style.cursor='grabbing';}}); document.addEventListener('mousemove',function(e){if(isDragging){translateX=e.clientX-startX;translateY=e.clientY-startY;applyZoom();}}); document.addEventListener('mouseup',function(){if(isDragging){isDragging=false;modalImg.style.cursor=zoomLevel>1?'move':'grab';}}); document.addEventListener('keydown',function(e){if(e.key==='Escape')closeImageModal();}); });
     </script>
     <script src="../cart.js"></script>
 </body>

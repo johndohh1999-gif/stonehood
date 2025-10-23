@@ -70,6 +70,21 @@ Stonehood is a modern streetwear e-commerce website built with HTML, CSS, and Ja
 The server automatically starts via the configured workflow. The site is served on port 5000.
 
 ## Recent Changes
+- October 23, 2025: Implemented image zoom functionality across ALL 12 product pages
+  - Added interactive image popups with zoom controls to all product pages
+  - Modal popup displays at 50% screen size (max-width: 50%, max-height: 50vh)
+  - Zoom controls: +/− buttons, Reset button, mouse wheel zoom support
+  - Zoom range: 0.5x (50%) to 3x (300%) with 0.25x increments
+  - Drag/pan functionality when zoomed in to view image details
+  - Click product image to open modal, click outside or press Escape to close
+  - Proper image containment with overflow: hidden for smooth zoom/pan experience
+  - Controls positioned inside modal (bottom: 10px) for accessibility across all viewports
+  - Applied to Women's section: footwear, shirts, outerwear, jeans&trousers
+  - Applied to Men's section: footwear, shirts, jackets, hoodies
+  - Applied to Juniors section: tshirts, hoodies, shorts, sneakers
+  - All 12 pages have identical, production-ready implementation
+  - Architect-reviewed and approved implementation
+
 - October 21, 2025: Fixed Women's Outerwear page - Debug and corrections
   - Fixed page title from "Men's Shirts Collection" to "Women's Outerwear Collection"
   - Updated category filter buttons to match actual products (Denim Jackets, Non-Denim Jackets, Coats, Striped Sweaters, Knitted Sweaters, Mock Neck)
