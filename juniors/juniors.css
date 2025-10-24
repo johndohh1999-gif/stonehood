@@ -42,28 +42,21 @@ section.active {
   background-size: cover;
 }
 
-/* IMAGE PLACEHOLDER: Replace background-image with juniors T-shirts background image */
+
 .first {
-  /* background-image: url('../images/juniors-tshirts-bg.png'); */
-  /* Add your T-shirts background image above */
+   background-image: url('../images/juniors-tshirts-bg.png');
 }
 
-/* IMAGE PLACEHOLDER: Replace background-image with juniors hoodies background image */
 .second {
-  /* background-image: url('../images/juniors-hoodies-bg.png'); */
-  /* Add your hoodies background image above */
+ background-image: url('../images/juniors-hoodies-bg.png');
 }
 
-/* IMAGE PLACEHOLDER: Replace background-image with juniors shorts background image */
 .third {
-  /* background-image: url('../images/juniors-shorts-bg.png'); */
-  /* Add your shorts background image above */
+background-image: url('../images/juniors-shorts-bg.png');
 }
 
-/* IMAGE PLACEHOLDER: Replace background-image with juniors sneakers background image */
 .fourth {
-  /* background-image: url('../images/juniors-sneakers-bg.png'); */
-  /* Add your sneakers background image above */
+background-image: url('../images/juniors-sneakers-bg.png');
 }
 
 /* Header styles */
