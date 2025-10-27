@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sale - Stonehood</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2c2c2c;
+        }
+
+        .filter-sort {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .filter-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 1px solid #ddd;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .product-count {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .category-filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: #e74c3c;
+            color: white;
+            border-color: #e74c3c;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #e74c3c;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 350px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .product-display {
+            width: 240px;
+            height: 300px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-card:hover .product-display {
+            transform: scale(1.03);
+        }
+
+        .product-display img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c2c2c;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .product-description {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .current-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #e74c3c;
+        }
+
+        .original-price {
+            font-size: 14px;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .size-selection {
+            margin-bottom: 15px;
+        }
+
+        .size-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 6px;
+        }
+
+        .size-btn {
+            width: 35px;
+            height: 35px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .size-btn:hover, .size-btn.selected {
+            border-color: #333;
+            background: #333;
+            color: white;
+        }
+
+        .color-selection {
+            margin-bottom: 15px;
+        }
+
+        .color-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .color-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .color-dot:hover, .color-dot.active {
+            border-color: #333;
+            transform: scale(1.1);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .add-to-cart {
+            flex: 1;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .add-to-cart:hover {
+            background: #555;
+        }
+
+        .quick-buy {
+            flex: 1;
+            background: white;
+            color: #333;
+            border: 1px solid #ddd;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quick-buy:hover {
+            background: #f5f5f5;
+        }
+
+        /* Header Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: #333;
+            position: sticky;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            height: 70px;
+        }
+
+        .left-header {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-toggle {
+            font-size: 28px;
+            cursor: pointer;
+            color: #fff;
+            z-index: 1100;
+            margin-right: 1rem;
+        }
+
+        .logo {
+            position: absolute;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 100px;
+            width: auto;
+            z-index: 1000;
+        }
+
+        .logo img {
+            height: 120px;
+            margin-top: 10px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            position: relative;
+        }
+
+        .nav-icon {
+            color: white;
+            font-size: initial;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            z-index: 2;
+            text-decoration: none;
+        }
+
+        .nav-icon i:hover {
+            color: #D3D3D3;
+        }
+
+        .category-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+    </style>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="left-header">
+            <div class="menu-toggle" id="menuToggle">&#9776;</div>
+            <div class="logo">
+                <a href="/">
+                    <img src="images/logo 1.png" alt="Stonehood Logo" />
+                </a>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="#" class="nav-icon" id="searchIcon">
+                <i class="fas fa-search"></i>
+            </a>
+            <a href="#" class="nav-icon" id="loginBtn"><i class="fas fa-user"></i></a>
+            <a href="#" class="nav-icon"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Sale - Up to 70% Off</h1>
+            <div class="filter-sort">
+                <span class="product-count" id="productCount">12 PRODUCTS</span>
+            </div>
+        </div>
+
+        <div class="category-filters">
+            <button class="category-btn active" onclick="filterByCategory('all', this)">All Sale Items</button>
+            <button class="category-btn" onclick="filterByCategory('men', this)">Men's Sale</button>
+            <button class="category-btn" onclick="filterByCategory('women', this)">Women's Sale</button>
+            <button class="category-btn" onclick="filterByCategory('juniors', this)">Juniors Sale</button>
+        </div>
+
+        <div class="product-grid" id="productGrid">
+            <!-- ============================================ -->
+            <!-- MEN'S SALE PRODUCTS                          -->
+            <!-- Add more men's products below this section   -->
+            <!-- ============================================ -->
+            
+            <!-- Product 1 - Men's Leather Jacket -->
+            <div class="product-card" data-category="men" data-price="45000" data-name="Classic Leather Jacket">
+                <div class="discount-badge">40% OFF</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #2c2c2c, #1a1a1a);">
+                    <div class="product-display">
+                        <div class="category-tag">MEN</div>
+                        <img src="images/products/blackjacket.png" alt="Classic Leather Jacket">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Classic Leather Jacket</h3>
+                    <p class="product-description">Premium genuine leather with quilted lining and classic biker styling</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.45,000.00</span>
+                        <span class="original-price">Rs.75,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn selected">M</button>
+                            <button class="size-btn">L</button>
+                            <button class="size-btn">XL</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #000;"></div>
+                            <div class="color-dot" style="background-color: #8b4513;"></div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(101, this)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(101)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 - Men's Hoodie -->
+            <div class="product-card" data-category="men" data-price="24000" data-name="Premium Hoodie">
+                <div class="discount-badge">50% OFF</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #4a4a4a, #2d2d2d);">
+                    <div class="product-display">
+                        <div class="category-tag">MEN</div>
+                        <img src="images/products/brownhoodie.png" alt="Premium Hoodie">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Premium Hoodie</h3>
+                    <p class="product-description">Comfortable cotton blend with modern fit and adjustable drawstrings</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.24,000.00</span>
+                        <span class="original-price">Rs.48,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn">M</button>
+                            <button class="size-btn selected">L</button>
+                            <button class="size-btn">XL</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #8b4513;"></div>
+                            <div class="color-dot" style="background-color: #000;"></div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(102, this)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(102)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 - Men's Polo Shirt -->
+            <div class="product-card" data-category="men" data-price="12000" data-name="Classic Polo">
+                <div class="discount-badge">60% OFF</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #4169e1, #1e90ff);">
+                    <div class="product-display">
+                        <div class="category-tag">MEN</div>
+                        <img src="images/products/bluepolo.png" alt="Classic Polo">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Classic Polo</h3>
+                    <p class="product-description">Timeless polo design in breathable cotton with ribbed collar</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.12,000.00</span>
+                        <span class="original-price">Rs.30,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn selected">M</button>
+                            <button class="size-btn">L</button>
+                            <button class="size-btn">XL</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #4169e1;"></div>
+                            <div class="color-dot" style="background-color: #000;"></div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(103, this)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(103)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 - Men's Footwear -->
+            <div class="product-card" data-category="men" data-price="36000" data-name="Premium Boots">
+                <div class="discount-badge">45% OFF</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #654321, #3e2723);">
+                    <div class="product-display">
+                        <div class="category-tag">MEN</div>
+                        <img src="images/products/bootsbrown.png" alt="Premium Boots">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Premium Boots</h3>
+                    <p class="product-description">Durable leather boots with cushioned sole and water-resistant finish</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.36,000.00</span>
+                        <span class="original-price">Rs.65,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options">
+                            <button class="size-btn">8</button>
+                            <button class="size-btn selected">9</button>
+                            <button class="size-btn">10</button>
+                            <button class="size-btn">11</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #654321;"></div>
+                            <div class="color-dot" style="background-color: #000;"></div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(104, this)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(104)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================ -->
+            <!-- WOMEN'S SALE PRODUCTS                        -->
+            <!-- Add more women's products below this section -->
+            <!-- ============================================ -->
+
+            <!-- Product 5 - Women's Denim Jacket -->
+            <div class="product-card" data-category="women" data-price="22000" data-name="Denim Jacket">
+                <div class="discount-badge">55% OFF</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #4682b4, #5f9ea0);">
+                    <div class="product-display">
+                        <div class="category-tag">WOMEN</div>
+                        <img src="images/products/denimjacketwblue.png" alt="Denim Jacket">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Denim Jacket</h3>
+                    <p class="product-description">Classic blue denim with modern cut and vintage-inspired details</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.22,000.00</span>
+                        <span class="original-price">Rs.48,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn selected">M</button>
+                            <button class="size-btn">L</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #4682b4;"></div>
+                            <div class="color-dot" style="background-color: #2f4f4f;"></div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(105, this)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(105)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6 - Women's Coat -->
+            <div class="product-card" data-category="women" data-price="42000" data-name="Long Coat">
+                <div class="discount-badge">50% OFF</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #d2b48c, #bc8f8f);">
+                    <div class="product-display">
+                        <div class="category-tag">WOMEN</div>
+                        <img src="images/products/coatwcamel.png" alt="Long Coat">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Long Coat</h3>
+                    <p class="product-description">Elegant wool-blend coat with belted waist and double-breasted front</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.42,000.00</span>
+                        <span class="original-price">Rs.84,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn">M</button>
+                            <button class="size-btn selected">L</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #d2b48c;"></div>
+                            <div class="color-dot" style="background-color: #808080;"></div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(106, this)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(106)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 7 - Women's Jeans -->
+            <div class="product-card" data-category="women" data-price="16000" data-name="Distressed Jeans">
+                <div class="discount-badge">65% OFF</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #4169e1, #1e90ff);">
+                    <div class="product-display">
+                        <div class="category-tag">WOMEN</div>
+                        <img src="images/products/bluedistress.png" alt="Distressed Jeans">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Distressed Jeans</h3>
+                    <p class="product-description">Trendy distressed denim with authentic wear patterns and modern fit</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.16,000.00</span>
+                        <span class="original-price">Rs.45,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options">
+                            <button class="size-btn">26</button>
+                            <button class="size-btn selected">28</button>
+                            <button class="size-btn">30</button>
+                            <button class="size-btn">32</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #4169e1;"></div>
+                            <div class="color-dot" style="background-color: #2f4f4f;"></div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(107, this)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(107)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 8 - Women's Cargo Trousers -->
+            <div class="product-card" data-category="women" data-price="18000" data-name="Cargo Trousers">
+                <div class="discount-badge">60% OFF</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #d2b48c, #bc8f8f);">
+                    <div class="product-display">
+                        <div class="category-tag">WOMEN</div>
+                        <img src="images/products/cargotrousersand.png" alt="Cargo Trousers">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Cargo Trousers</h3>
+                    <p class="product-description">Utility-inspired cargo pants with multiple pockets and relaxed fit</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.18,000.00</span>
+                        <span class="original-price">Rs.45,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn selected">M</button>
+                            <button class="size-btn">L</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #d2b48c;"></div>
+                            <div class="color-dot" style="background-color: #808080;"></div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(108, this)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(108)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================ -->
+            <!-- JUNIORS SALE PRODUCTS                        -->
+            <!-- Add more juniors products below this section -->
+            <!-- ============================================ -->
+
+            <!-- Product 9 - Juniors Hoodie -->
+            <div class="product-card" data-category="juniors" data-price="14000" data-name="Junior Hoodie">
+                <div class="discount-badge">70% OFF</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #ff6347, #ff4500);">
+                    <div class="product-display">
+                        <div class="category-tag">JUNIORS</div>
+                        <img src="images/products/brownhoodie.png" alt="Junior Hoodie">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Junior Hoodie</h3>
+                    <p class="product-description">Cozy cotton-blend hoodie perfect for active kids with soft fleece lining</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.14,000.00</span>
+                        <span class="original-price">Rs.48,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options">
+                            <button class="size-btn">XS</button>
+                            <button class="size-btn selected">S</button>
+                            <button class="size-btn">M</button>
+                            <button class="size-btn">L</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #ff6347;"></div>
+                            <div class="color-dot" style="background-color: #4169e1;"></div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(109, this)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(109)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 10 - Juniors T-Shirt -->
+            <div class="product-card" data-category="juniors" data-price="8000" data-name="Junior Polo">
+                <div class="discount-badge">60% OFF</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #4169e1, #1e90ff);">
+                    <div class="product-display">
+                        <div class="category-tag">JUNIORS</div>
+                        <img src="images/products/bluepolo.png" alt="Junior Polo">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Junior Polo</h3>
+                    <p class="product-description">Classic polo design in soft cotton perfect for school or casual wear</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.8,000.00</span>
+                        <span class="original-price">Rs.20,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options">
+                            <button class="size-btn">XS</button>
+                            <button class="size-btn selected">S</button>
+                            <button class="size-btn">M</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #4169e1;"></div>
+                            <div class="color-dot" style="background-color: #000;"></div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(110, this)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(110)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 11 - Juniors Sneakers -->
+            <div class="product-card" data-category="juniors" data-price="18000" data-name="Junior Sneakers">
+                <div class="discount-badge">55% OFF</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #fff, #e0e0e0);">
+                    <div class="product-display">
+                        <div class="category-tag">JUNIORS</div>
+                        <img src="images/products/canvaswhite.png" alt="Junior Sneakers">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Junior Sneakers</h3>
+                    <p class="product-description">Comfortable canvas sneakers with cushioned sole for all-day wear</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.18,000.00</span>
+                        <span class="original-price">Rs.40,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options">
+                            <button class="size-btn">2</button>
+                            <button class="size-btn selected">3</button>
+                            <button class="size-btn">4</button>
+                            <button class="size-btn">5</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #fff; border: 1px solid #ccc;"></div>
+                            <div class="color-dot" style="background-color: #ff0000;"></div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(111, this)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(111)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 12 - Juniors Shorts -->
+            <div class="product-card" data-category="juniors" data-price="9000" data-name="Junior Cargo Shorts">
+                <div class="discount-badge">65% OFF</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #d2b48c, #bc8f8f);">
+                    <div class="product-display">
+                        <div class="category-tag">JUNIORS</div>
+                        <img src="images/products/cargotrousersand.png" alt="Junior Cargo Shorts">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Junior Cargo Shorts</h3>
+                    <p class="product-description">Durable cargo shorts with multiple pockets for adventurous kids</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.9,000.00</span>
+                        <span class="original-price">Rs.25,000.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options">
+                            <button class="size-btn">XS</button>
+                            <button class="size-btn selected">S</button>
+                            <button class="size-btn">M</button>
+                            <button class="size size-btn">L</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <div class="color-dot active" style="background-color: #d2b48c;"></div>
+                            <div class="color-dot" style="background-color: #808080;"></div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(112, this)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(112)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================ -->
+            <!-- ADD MORE PRODUCTS HERE                       -->
+            <!-- Copy any product card above and modify:      -->
+            <!-- 1. Change data-category (men/women/juniors)  -->
+            <!-- 2. Update discount-badge percentage          -->
+            <!-- 3. Change product image path                 -->
+            <!-- 4. Update product name and description       -->
+            <!-- 5. Set current-price and original-price      -->
+            <!-- 6. Adjust sizes based on category            -->
+            <!-- 7. Update color options                      -->
+            <!-- 8. Change unique product ID in addToCart()   -->
+            <!-- ============================================ -->
+
+        </div>
+    </div>
+
+    <!-- Load cart.js for shopping cart functionality -->
+    <script src="cart.js"></script>
+
+    <script>
+        // Category filter functionality
+        function filterByCategory(category, clickedBtn) {
+            const cards = document.querySelectorAll('.product-card');
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            
+            // Update active category button
+            categoryBtns.forEach(btn => btn.classList.remove('active'));
+            clickedBtn.classList.add('active');
+            
+            // Filter products
+            let visibleCount = 0;
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.5s ease';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update product count
+            document.getElementById('productCount').textContent = `${visibleCount} PRODUCTS`;
+        }
+
+        // Size selection functionality
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const siblings = this.parentElement.querySelectorAll('.size-btn');
+                siblings.forEach(sibling => sibling.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        // Quick buy functionality
+        function quickBuy(productId) {
+            const card = event.target.closest('.product-card');
+            const productName = card.querySelector('.product-name').textContent;
+            const price = card.querySelector('.current-price').textContent;
+            const selectedSize = card.querySelector('.size-btn.selected')?.textContent || 'M';
+            
+            alert(`Quick Buy: ${productName}\nSize: ${selectedSize}\nPrice: ${price}\n\nRedirecting to checkout...`);
+        }
+
+        // Loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.product-card');
+            
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
