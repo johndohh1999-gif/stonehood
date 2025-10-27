@@ -145,6 +145,42 @@
                     </div>
                 </div>
             </div>
+            <div class="product-card">
+                <div class="discount-badge new-badge">NEW</div>
+                <div class="product-image" style="background: linear-gradient(135deg, #e8f4fd, #d6ecfa);">
+                    <!-- IMAGE: Replace with actual junior shorts image -->
+                    <img class="product-main-image" src="../images/products/juniorsknittrouserblack.png" alt="Casual Shorts" />
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Basic Knitted Trousers</h3>
+                    <p class="product-description">Breathable knitted trousers</p>
+                    <div class="product-price">
+                        <span class="current-price">Rs.1,800.00</span>
+                    </div>
+                    <div class="size-selection">
+                        <div class="size-label">Size</div>
+                        <div class="size-options">
+                            <button class="size-btn">XS</button>
+                            <button class="size-btn selected">S</button>
+                            <button class="size-btn">M</button>
+                            <button class="size-btn">L</button>
+                        </div>
+                    </div>
+                    <div class="color-selection">
+                        <div class="color-label">Colors</div>
+                        <div class="color-options">
+                            <!-- IMAGE: Add data-image attribute with actual image paths -->
+                            <div class="color-dot active" data-image="../images/products/juniorsknittrouserblack.png" style="background-color: #000000;"></div>
+                            <div class="color-dot" data-image="../images/products/juniorsknittrouserbeige.png" style="background-color: #d4ae75;"></div>
+                            <div class="color-dot" data-image="../images/products/juniorsknittrousergrey.png" style="background-color: #919092;"></div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart(302, this)">Add to Cart</button>
+                        <button class="quick-buy" onclick="quickBuy(302, this)">Quick Buy</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="image-modal" id="imageModal"><div class="image-modal-content"><button class="image-modal-close" onclick="closeImageModal()">&times;</button><img id="modalImage" src="" alt="Product Image"><div class="zoom-controls"><button class="zoom-btn" onclick="zoomOut()" title="Zoom Out">−</button><button class="zoom-reset" onclick="resetZoom()" title="Reset Zoom">Reset</button><button class="zoom-btn" onclick="zoomIn()" title="Zoom In">+</button></div></div></div>
