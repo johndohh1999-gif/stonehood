@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sale - Stonehood</title>
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="search.css" />
     <style>
         * {
             margin: 0;
@@ -316,7 +327,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 2rem;
-            background: #333;
+            background: transparent;
             position: sticky;
             width: 100%;
             top: 0;
@@ -332,7 +343,7 @@
         .menu-toggle {
             font-size: 28px;
             cursor: pointer;
-            color: #fff;
+            color: #000000;
             z-index: 1100;
             margin-right: 1rem;
         }
@@ -361,8 +372,14 @@
             position: relative;
         }
 
+        .search-wrapper {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
         .nav-icon {
-            color: white;
+            color: black;
             font-size: initial;
             cursor: pointer;
             transition: color 0.3s ease;
@@ -389,12 +406,6 @@
             z-index: 2;
         }
     </style>
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
-    />
 </head>
 <body>
     <!-- Header -->
@@ -403,19 +414,75 @@
             <div class="menu-toggle" id="menuToggle">&#9776;</div>
             <div class="logo">
                 <a href="/">
-                    <img src="images/logo 1.png" alt="Stonehood Logo" />
+                    <img src="images/logo.png" alt="Stonehood Logo" />
                 </a>
             </div>
         </div>
 
         <div class="nav-buttons">
-            <a href="#" class="nav-icon" id="searchIcon">
-                <i class="fas fa-search"></i>
-            </a>
+            <div class="search-wrapper" id="searchWrapper">
+                <a href="#" class="nav-icon" id="searchIcon">
+                    <i class="fas fa-search"></i>
+                </a>
+                <input
+                    type="text"
+                    class="nav-search-input"
+                    id="searchInput"
+                    placeholder="Search..."
+                    autocomplete="off"
+                />
+            </div>
             <a href="#" class="nav-icon" id="loginBtn"><i class="fas fa-user"></i></a>
             <a href="#" class="nav-icon"><i class="fas fa-shopping-cart"></i></a>
         </div>
     </header>
+
+    <nav class="menu" id="fullMenu">
+        <div class="close" id="closeMenu">&times;</div>
+        <h1>Stonehood</h1>
+
+        <div class="menu-top-row">
+            <div class="category-group" data-category="men">
+                <a href="/men/men.html" class="menu-category menu-item">Men</a>
+                <div class="submenu" id="submenu-men">
+                    <a href="/men/men-hoodies.html" class="menu-item">Hoodies</a>
+                    <a href="/men/men-jackets.html" class="menu-item">Jackets</a>
+                    <a href="/men/men-shirts.html" class="menu-item">Shirts</a>
+                    <a href="/men/men-footwear.html" class="menu-item">Footwear</a>
+                </div>
+            </div>
+
+            <div class="category-group" data-category="women">
+                <a href="/women/women.html" class="menu-category menu-item">Women</a>
+                <div class="submenu" id="submenu-women">
+                    <a href="/women/women-shirts.html" class="menu-item">Shirts</a>
+                    <a href="/women/women-jeans&trousers.html" class="menu-item">Jeans & Trousers</a>
+                    <a href="/women/women-outerwear.html" class="menu-item">Outerwear</a>
+                    <a href="/women/women-footwear.html" class="menu-item">Footwear</a>
+                </div>
+            </div>
+
+            <div class="category-group" data-category="juniors">
+                <a href="/juniors/juniors.html" class="menu-category menu-item">Juniors</a>
+                <div class="submenu" id="submenu-juniors">
+                    <a href="/juniors/juniors-shirts.html" class="menu-item">T-Shirts</a>
+                    <a href="/juniors/juniors-hoodies.html" class="menu-item">Hoodies</a>
+                    <a href="/juniors/juniors-trousers.html" class="menu-item">Trousers</a>
+                    <a href="/juniors/juniors-sneakers.html" class="menu-item">Sneakers</a>
+                </div>
+            </div>
+        </div>
+
+        <hr class="menu-divider" />
+
+        <div class="menu-column secondary">
+            <a href="sale.html" class="menu-item">Sale</a>
+            <a href="#" class="menu-item">Clothing</a>
+            <a href="#" class="menu-item">Footwear</a>
+            <a href="#" class="menu-item">Fragrances</a>
+            <a href="/contact.html" class="menu-item">Contact Us</a>
+        </div>
+    </nav>
 
     <div class="container">
         <div class="header">
@@ -1002,5 +1069,78 @@
         `;
         document.head.appendChild(style);
     </script>
+
+    <div class="login-wrapper" id="loginWrapper">
+        <div class="login-container" id="loginContainer">
+            <span class="close-login" id="closeLogin">&times;</span>
+
+            <div class="login-left">
+                <img src="images/cont.png" alt="Login Image" />
+            </div>
+
+            <div class="login-right">
+                <div class="flip-card" id="flipCard">
+                    <div class="card-face card-front">
+                        <h1 class="login-title">Welcome back</h1>
+                        <p class="login-subtitle">
+                            Sign in to access your account and continue your style journey
+                        </p>
+
+                        <form>
+                            <label class="form-label" for="email">Email address</label>
+                            <input id="email" type="email" class="form-input" placeholder="your@email.com" autocomplete="email" required />
+
+                            <label class="form-label" for="password">Password</label>
+                            <div class="password-container">
+                                <input id="password" type="password" placeholder="Enter your password" autocomplete="current-password" />
+                                <span id="togglePassword" class="password-toggle" role="button" tabindex="0">
+                                    <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                        <circle cx="12" cy="12" r="3" />
+                                    </svg>
+                                    <svg id="eyeSlashIcon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24" style="display: none;">
+                                        <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.14 21.14 0 0 1 5.06-6.34" />
+                                        <path d="M1 1l22 22" />
+                                    </svg>
+                                </span>
+                            </div>
+
+                            <button type="submit" class="login-btn">SIGN IN</button>
+                            <a href="#" class="forgot-password">Forgot your password?</a>
+                            <div class="divider">or</div>
+                            <button type="button" class="signup-btn" id="toSignup">CREATE ACCOUNT</button>
+                        </form>
+                    </div>
+
+                    <div class="card-face card-back">
+                        <h1 class="login-title">Create Account</h1>
+                        <p class="login-subtitle">Join us and start your fashion journey</p>
+
+                        <form>
+                            <label class="form-label" for="signupName">Full Name</label>
+                            <input id="signupName" type="text" class="form-input" placeholder="Your Name" autocomplete="name" required />
+
+                            <label class="form-label" for="signupEmail">Email address</label>
+                            <input id="signupEmail" type="email" class="form-input" placeholder="Your Email" autocomplete="email" required />
+
+                            <label class="form-label" for="signupPassword">Password</label>
+                            <input id="signupPassword" type="password" class="form-input" placeholder="Create Password" autocomplete="new-password" required />
+
+                            <label class="form-label" for="confirmPassword">Re-enter Password</label>
+                            <input id="confirmPassword" type="password" class="form-input" placeholder="Re-enter Password" autocomplete="new-password" required />
+
+                            <button type="submit" class="login-btn">CREATE ACCOUNT</button>
+                            <div class="divider">or</div>
+                            <button type="button" class="signup-btn" id="toLogin">Back to Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="products.js"></script>
+    <script src="search.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
