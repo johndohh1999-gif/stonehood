@@ -348,6 +348,19 @@
             margin-right: 1rem;
         }
 
+        .menu-item {
+            color: black;
+        }
+
+        .menu-item:hover {
+            color: white;
+            background-color: black;
+        }
+
+        .menu h1 {
+            color: black;
+        }
+
         .logo {
             position: absolute;
             left: 40px;
@@ -404,6 +417,77 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             z-index: 2;
+        }
+
+        .image-modal { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(0,0,0,0.9); 
+            z-index: 2000; 
+            display: none; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 40px; 
+        }
+        .image-modal.active { display: flex; }
+        .image-modal-content { 
+            max-width: 50%; 
+            max-height: 50vh; 
+            position: relative; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            overflow: hidden; 
+        }
+        .image-modal-content img { 
+            max-width: 100%; 
+            max-height: 50vh; 
+            object-fit: contain; 
+            border-radius: 8px; 
+            transition: transform 0.3s ease; 
+            cursor: grab; 
+        }
+        .image-modal-content img.zoomed { cursor: move; }
+        .image-modal-close { 
+            position: absolute; 
+            top: -40px; 
+            right: -40px; 
+            background: none; 
+            border: none; 
+            color: white; 
+            font-size: 36px; 
+            cursor: pointer; 
+            font-weight: 300; 
+        }
+        .image-modal-close:hover { color: #e74c3c; }
+        .zoom-controls { 
+            position: absolute; 
+            bottom: 10px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            display: flex; 
+            gap: 10px; 
+        }
+        .zoom-btn { 
+            background: rgba(255,255,255,0.9); 
+            border: none; 
+            width: 40px; 
+            height: 40px; 
+            border-radius: 50%; 
+            cursor: pointer; 
+            font-size: 20px; 
+            font-weight: bold; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            transition: all 0.2s; 
+        }
+        .zoom-btn:hover { 
+            background: white; 
+            transform: scale(1.1); 
         }
     </style>
 </head>
@@ -511,7 +595,7 @@
                 <div class="product-image" style="background: linear-gradient(135deg, #2c2c2c, #1a1a1a);">
                     <div class="product-display">
                         <div class="category-tag">MEN</div>
-                        <img src="images/products/blackjacket.png" alt="Classic Leather Jacket">
+                        <img class="product-main-image" src="images/products/blackjacket.png" alt="Classic Leather Jacket">
                     </div>
                 </div>
                 <div class="product-info">
@@ -533,8 +617,8 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #000;"></div>
-                            <div class="color-dot" style="background-color: #8b4513;"></div>
+                            <div class="color-dot active" style="background-color: #000;" data-image="images/products/blackjacket.png"></div>
+                            <div class="color-dot" style="background-color: #8b4513;" data-image="images/products/brownjacket.png"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -550,7 +634,7 @@
                 <div class="product-image" style="background: linear-gradient(135deg, #4a4a4a, #2d2d2d);">
                     <div class="product-display">
                         <div class="category-tag">MEN</div>
-                        <img src="images/products/brownhoodie.png" alt="Premium Hoodie">
+                        <img class="product-main-image" src="images/products/brownhoodie.png" alt="Premium Hoodie">
                     </div>
                 </div>
                 <div class="product-info">
@@ -572,8 +656,8 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #8b4513;"></div>
-                            <div class="color-dot" style="background-color: #000;"></div>
+                            <div class="color-dot active" style="background-color: #8b4513;" data-image="images/products/brownhoodie.png"></div>
+                            <div class="color-dot" style="background-color: #000;" data-image="images/products/blackhoodie.png"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -589,7 +673,7 @@
                 <div class="product-image" style="background: linear-gradient(135deg, #4169e1, #1e90ff);">
                     <div class="product-display">
                         <div class="category-tag">MEN</div>
-                        <img src="images/products/bluepolo.png" alt="Classic Polo">
+                        <img class="product-main-image" src="images/products/bluepolo.png" alt="Classic Polo">
                     </div>
                 </div>
                 <div class="product-info">
@@ -611,8 +695,8 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #4169e1;"></div>
-                            <div class="color-dot" style="background-color: #000;"></div>
+                            <div class="color-dot active" style="background-color: #4169e1;" data-image="images/products/bluepolo.png"></div>
+                            <div class="color-dot" style="background-color: #000;" data-image="images/products/blackpolo.png"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -628,7 +712,7 @@
                 <div class="product-image" style="background: linear-gradient(135deg, #654321, #3e2723);">
                     <div class="product-display">
                         <div class="category-tag">MEN</div>
-                        <img src="images/products/bootsbrown.png" alt="Premium Boots">
+                        <img class="product-main-image" src="images/products/bootsbrown.png" alt="Premium Boots">
                     </div>
                 </div>
                 <div class="product-info">
@@ -650,8 +734,8 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #654321;"></div>
-                            <div class="color-dot" style="background-color: #000;"></div>
+                            <div class="color-dot active" style="background-color: #654321;" data-image="images/products/bootsbrown.png"></div>
+                            <div class="color-dot" style="background-color: #000;" data-image="images/products/bootsblack.png"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -672,7 +756,7 @@
                 <div class="product-image" style="background: linear-gradient(135deg, #4682b4, #5f9ea0);">
                     <div class="product-display">
                         <div class="category-tag">WOMEN</div>
-                        <img src="images/products/denimjacketwblue.png" alt="Denim Jacket">
+                        <img class="product-main-image" src="images/products/denimjacketwblue.png" alt="Denim Jacket">
                     </div>
                 </div>
                 <div class="product-info">
@@ -693,8 +777,8 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #4682b4;"></div>
-                            <div class="color-dot" style="background-color: #2f4f4f;"></div>
+                            <div class="color-dot active" style="background-color: #4682b4;" data-image="images/products/denimjacketwblue.png"></div>
+                            <div class="color-dot" style="background-color: #2f4f4f;" data-image="images/products/denimjacketwdark.png"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -710,7 +794,7 @@
                 <div class="product-image" style="background: linear-gradient(135deg, #d2b48c, #bc8f8f);">
                     <div class="product-display">
                         <div class="category-tag">WOMEN</div>
-                        <img src="images/products/coatwcamel.png" alt="Long Coat">
+                        <img class="product-main-image" src="images/products/coatwcamel.png" alt="Long Coat">
                     </div>
                 </div>
                 <div class="product-info">
@@ -731,8 +815,8 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #d2b48c;"></div>
-                            <div class="color-dot" style="background-color: #808080;"></div>
+                            <div class="color-dot active" style="background-color: #d2b48c;" data-image="images/products/coatwcamel.png"></div>
+                            <div class="color-dot" style="background-color: #808080;" data-image="images/products/coatwgrey.png"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -748,7 +832,7 @@
                 <div class="product-image" style="background: linear-gradient(135deg, #4169e1, #1e90ff);">
                     <div class="product-display">
                         <div class="category-tag">WOMEN</div>
-                        <img src="images/products/bluedistress.png" alt="Distressed Jeans">
+                        <img class="product-main-image" src="images/products/bluedistress.png" alt="Distressed Jeans">
                     </div>
                 </div>
                 <div class="product-info">
@@ -770,8 +854,8 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #4169e1;"></div>
-                            <div class="color-dot" style="background-color: #2f4f4f;"></div>
+                            <div class="color-dot active" style="background-color: #4169e1;" data-image="images/products/bluedistress.png"></div>
+                            <div class="color-dot" style="background-color: #2f4f4f;" data-image="images/products/bluevintage.png"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -787,7 +871,7 @@
                 <div class="product-image" style="background: linear-gradient(135deg, #d2b48c, #bc8f8f);">
                     <div class="product-display">
                         <div class="category-tag">WOMEN</div>
-                        <img src="images/products/cargotrousersand.png" alt="Cargo Trousers">
+                        <img class="product-main-image" src="images/products/cargotrousersand.png" alt="Cargo Trousers">
                     </div>
                 </div>
                 <div class="product-info">
@@ -808,8 +892,8 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #d2b48c;"></div>
-                            <div class="color-dot" style="background-color: #808080;"></div>
+                            <div class="color-dot active" style="background-color: #d2b48c;" data-image="images/products/coatwcamel.png"></div>
+                            <div class="color-dot" style="background-color: #808080;" data-image="images/products/coatwgrey.png"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -830,7 +914,7 @@
                 <div class="product-image" style="background: linear-gradient(135deg, #ff6347, #ff4500);">
                     <div class="product-display">
                         <div class="category-tag">JUNIORS</div>
-                        <img src="images/products/brownhoodie.png" alt="Junior Hoodie">
+                        <img class="product-main-image" src="images/products/brownhoodie.png" alt="Junior Hoodie">
                     </div>
                 </div>
                 <div class="product-info">
@@ -852,8 +936,8 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #ff6347;"></div>
-                            <div class="color-dot" style="background-color: #4169e1;"></div>
+                            <div class="color-dot active" style="background-color: #ff6347;" data-image="images/products/checkeredkidsred.png"></div>
+                            <div class="color-dot" style="background-color: #4169e1;" data-image="images/products/checkeredkidsblue.png"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -869,7 +953,7 @@
                 <div class="product-image" style="background: linear-gradient(135deg, #4169e1, #1e90ff);">
                     <div class="product-display">
                         <div class="category-tag">JUNIORS</div>
-                        <img src="images/products/bluepolo.png" alt="Junior Polo">
+                        <img class="product-main-image" src="images/products/bluepolo.png" alt="Junior Polo">
                     </div>
                 </div>
                 <div class="product-info">
@@ -890,8 +974,8 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #4169e1;"></div>
-                            <div class="color-dot" style="background-color: #000;"></div>
+                            <div class="color-dot active" style="background-color: #4169e1;" data-image="images/products/bluedistress.png"></div>
+                            <div class="color-dot" style="background-color: #000;" data-image="images/products/blackhoodie.png"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -907,7 +991,7 @@
                 <div class="product-image" style="background: linear-gradient(135deg, #fff, #e0e0e0);">
                     <div class="product-display">
                         <div class="category-tag">JUNIORS</div>
-                        <img src="images/products/canvaswhite.png" alt="Junior Sneakers">
+                        <img class="product-main-image" src="images/products/canvaswhite.png" alt="Junior Sneakers">
                     </div>
                 </div>
                 <div class="product-info">
@@ -929,8 +1013,8 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #fff; border: 1px solid #ccc;"></div>
-                            <div class="color-dot" style="background-color: #ff0000;"></div>
+                            <div class="color-dot active" style="background-color: #fff; border: 1px solid #ccc;" data-image="images/products/canvaswhite.png"></div>
+                            <div class="color-dot" style="background-color: #ff0000;" data-image="images/products/canvasred.png"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -946,7 +1030,7 @@
                 <div class="product-image" style="background: linear-gradient(135deg, #d2b48c, #bc8f8f);">
                     <div class="product-display">
                         <div class="category-tag">JUNIORS</div>
-                        <img src="images/products/cargotrousersand.png" alt="Junior Cargo Shorts">
+                        <img class="product-main-image" src="images/products/cargotrousersand.png" alt="Junior Cargo Shorts">
                     </div>
                 </div>
                 <div class="product-info">
@@ -968,8 +1052,8 @@
                     <div class="color-selection">
                         <div class="color-label">Colors</div>
                         <div class="color-options">
-                            <div class="color-dot active" style="background-color: #d2b48c;"></div>
-                            <div class="color-dot" style="background-color: #808080;"></div>
+                            <div class="color-dot active" style="background-color: #d2b48c;" data-image="images/products/coatwcamel.png"></div>
+                            <div class="color-dot" style="background-color: #808080;" data-image="images/products/coatwgrey.png"></div>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -1139,8 +1223,144 @@
         </div>
     </div>
 
+    <!-- Image Popup Modal -->
+    <div class="image-modal" id="imageModal">
+        <div class="image-modal-content">
+            <button class="image-modal-close" onclick="closeImageModal()">&times;</button>
+            <img id="modalImage" src="" alt="Product Image">
+            <div class="zoom-controls">
+                <button class="zoom-btn" onclick="zoomOut()">−</button>
+                <button class="zoom-btn" onclick="resetZoom()">⟲</button>
+                <button class="zoom-btn" onclick="zoomIn()">+</button>
+            </div>
+        </div>
+    </div>
+
     <script src="products.js"></script>
     <script src="search.js"></script>
     <script src="script.js"></script>
+
+    <script>
+        // Color selection functionality
+        document.querySelectorAll('.color-dot').forEach(dot => {
+            dot.addEventListener('click', function() {
+                const siblings = this.parentElement.querySelectorAll('.color-dot');
+                siblings.forEach(sibling => sibling.classList.remove('active'));
+                this.classList.add('active');
+                
+                const newImageSrc = this.getAttribute('data-image');
+                if (newImageSrc) {
+                    const productCard = this.closest('.product-card');
+                    const productImage = productCard.querySelector('.product-main-image');
+                    if (productImage) {
+                        productImage.src = newImageSrc;
+                    }
+                }
+            });
+        });
+
+        let zoomLevel = 1;
+        let isDragging = false;
+        let startX, startY, translateX = 0, translateY = 0;
+
+        function openImageModal(imgSrc) {
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imgSrc;
+            document.getElementById('imageModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            resetZoom();
+        }
+
+        function closeImageModal() {
+            document.getElementById('imageModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            resetZoom();
+        }
+
+        function zoomIn() {
+            zoomLevel = Math.min(zoomLevel + 0.25, 3);
+            applyZoom();
+        }
+
+        function zoomOut() {
+            zoomLevel = Math.max(zoomLevel - 0.25, 0.5);
+            applyZoom();
+        }
+
+        function resetZoom() {
+            zoomLevel = 1;
+            translateX = 0;
+            translateY = 0;
+            applyZoom();
+        }
+
+        function applyZoom() {
+            const modalImg = document.getElementById('modalImage');
+            modalImg.style.transform = `scale(${zoomLevel}) translate(${translateX}px, ${translateY}px)`;
+            if (zoomLevel > 1) {
+                modalImg.classList.add('zoomed');
+            } else {
+                modalImg.classList.remove('zoomed');
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const modalImg = document.getElementById('modalImage');
+            
+            // Click outside modal to close
+            document.getElementById('imageModal').addEventListener('click', function(e) {
+                if (e.target === this) closeImageModal();
+            });
+            
+            // Click product images to open modal
+            document.querySelectorAll('.product-main-image').forEach(img => {
+                img.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    openImageModal(this.src);
+                });
+            });
+            
+            // Mouse wheel zoom
+            modalImg.addEventListener('wheel', function(e) {
+                e.preventDefault();
+                if (e.deltaY < 0) {
+                    zoomIn();
+                } else {
+                    zoomOut();
+                }
+            });
+            
+            // Drag to pan when zoomed
+            modalImg.addEventListener('mousedown', function(e) {
+                if (zoomLevel > 1) {
+                    isDragging = true;
+                    startX = e.clientX - translateX;
+                    startY = e.clientY - translateY;
+                    modalImg.style.cursor = 'grabbing';
+                }
+            });
+            
+            document.addEventListener('mousemove', function(e) {
+                if (isDragging) {
+                    translateX = e.clientX - startX;
+                    translateY = e.clientY - startY;
+                    applyZoom();
+                }
+            });
+            
+            document.addEventListener('mouseup', function() {
+                if (isDragging) {
+                    isDragging = false;
+                    modalImg.style.cursor = zoomLevel > 1 ? 'move' : 'grab';
+                }
+            });
+            
+            // Escape key to close modal
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeImageModal();
+            });
+        });
+    </script>
 </body>
 </html>
